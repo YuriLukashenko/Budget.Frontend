@@ -4,11 +4,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { ChartComponent } from './chart/chart.component';
 import { DatePipe } from "@angular/common";
+import { ColumnChartComponent } from './column-chart/column-chart.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ChartComponent
+    ChartComponent,
+    ColumnChartComponent
   ],
   imports: [
     BrowserModule
