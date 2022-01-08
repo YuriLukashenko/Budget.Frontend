@@ -9,17 +9,21 @@ import {IUserDTO} from "../dtos/DTOs";
 })
 
 export class UsersComponent implements OnInit {
-  content = [] as IUserDTO[];
+  context = [] as IUserDTO[];
   constructor(private userService: UserService) {
   }
 
   ngOnInit(): void {
+    this.getContext();
+  }
+
+  getContext(){
     this.userService.getUsers().subscribe(
       data => {
-        this.content = data;
+        this.context = data;
       },
       err => {
-        this.content = JSON.parse(err.error).message;
+        this.context = JSON.parse(err.error).message;
       }
     );
   }

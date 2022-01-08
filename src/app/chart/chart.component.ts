@@ -1,9 +1,10 @@
-import { Component, Inject, NgZone, PLATFORM_ID } from '@angular/core';
+import {Component, Inject, Input, NgZone, PLATFORM_ID, SimpleChange, SimpleChanges} from '@angular/core';
 import { isPlatformBrowser, DatePipe } from '@angular/common';
 
 import * as am5 from '@amcharts/amcharts5';
 import * as am5xy from '@amcharts/amcharts5/xy';
 import am5themes_Animated from '@amcharts/amcharts5/themes/Animated';
+import {IChartData} from "../dtos/DTOs";
 
 @Component({
   selector: 'app-chart',
@@ -12,10 +13,13 @@ import am5themes_Animated from '@amcharts/amcharts5/themes/Animated';
 })
 export class ChartComponent {
 
+  @Input() data: IChartData[] | undefined;
+
   private root: any = am5.Root;
 
   // @ts-ignore
-  constructor(@Inject(PLATFORM_ID) private platformId, private zone: NgZone, public datepipe: DatePipe) {}
+  constructor(@Inject(PLATFORM_ID) private platformId, private zone: NgZone, public datepipe: DatePipe) {
+  }
 
   // Run the function only in the browser
   browserOnly(f: () => void) {
@@ -26,89 +30,73 @@ export class ChartComponent {
     }
   }
 
-  ngAfterViewInit() {
-    // Chart code goes in here
-    this.browserOnly(() => {
-      let root = am5.Root.new("chartdiv");
+  ngOnChanges(changes: SimpleChanges) {
+    this.createChart();
+  }
 
-      root.setThemes([am5themes_Animated.new(root)]);
+  createChart(){
+    if(!this.root.container){
+      this.root = am5.Root.new("chartdiv");
+      this.root.setThemes([am5themes_Animated.new(this.root)]);
+    }
 
-      let chart = root.container.children.push(
-        am5xy.XYChart.new(root, {
-          panX: false,
-          panY: false,
-          wheelX: "panX",
-          wheelY: "zoomX",
-          layout: root.verticalLayout,
-          cursor: am5xy.XYCursor.new(root, {})
-        })
-      );
+    let chart = this.root.container.children.push(
+      am5xy.XYChart.new(this.root, {
+        panX: false,
+        panY: false,
+        wheelX: "panX",
+        wheelY: "zoomX",
+        layout: this.root.verticalLayout,
+        cursor: am5xy.XYCursor.new(this.root, {})
+      })
+    );
 
-      let data = [
-        {
-          "date": "2019-01-18T00:00:00",
-          "monthSum": 10208
-        },
-        {
-          "date": "2019-02-15T00:00:00",
-          "monthSum": 12409
-        },
-        {
-          "date": "2019-03-10T00:00:00",
-          "monthSum": 14750
-        },
-      ]
-
-      let dataMap = data.map(x => (
-        {
-          date: new Date(x.date).getTime(),
-          dateT: new Date(x.date),
-          sum: x.monthSum
-        }
-        ));
-
-
-      // Create Y-axis
-      let yAxis = chart.yAxes.push(
-        am5xy.ValueAxis.new(root, {
-          renderer: am5xy.AxisRendererY.new(root, {})
-        })
-      );
-
-      // Create X-Axis
-      let xAxis = chart.xAxes.push(
-        am5xy.DateAxis.new(root, {
-          baseInterval: { timeUnit: "month", count: 1 },
-          renderer: am5xy.AxisRendererX.new(root, {}),
-        })
-      );
-      xAxis.data.setAll(dataMap);
-
-      // Create series
-      function createSeries(name:any, field:any) {
-        var series = chart.series.push(
-          am5xy.LineSeries.new(root, {
-            name: name,
-            xAxis: xAxis,
-            yAxis: yAxis,
-            valueYField: field,
-            valueXField: "date",
-            tooltip: am5.Tooltip.new(root, {
-              pointerOrientation: "right",
-              labelText: "{dateT}: {valueY}"
-            })
-          })
-        );
-        series.strokes.template.setAll({
-          strokeWidth: 3
-        });
-        series.data.setAll(dataMap);
+    let dataMap = this.data?.map(x => (
+      {
+        date: new Date(x.date).getTime(),
+        dateT: new Date(x.date),
+        sum: x.value
       }
+    )) ?? [];
 
-      createSeries("Flux by month 2021", "sum");
+    // Create Y-axis
+    let yAxis = chart.yAxes.push(
+      am5xy.ValueAxis.new(this.root, {
+        renderer: am5xy.AxisRendererY.new(this.root, {})
+      })
+    );
 
-      this.root = root;
-    });
+    // Create X-Axis
+    let xAxis = chart.xAxes.push(
+      am5xy.DateAxis.new(this.root, {
+        baseInterval: { timeUnit: "month", count: 1 },
+        renderer: am5xy.AxisRendererX.new(this.root, {}),
+      })
+    );
+    xAxis.data.setAll(dataMap);
+
+    // Create series
+    function createSeries(root:any, name:any, field:any) {
+      let series = chart.series.push(
+        am5xy.LineSeries.new(root, {
+          name: name,
+          xAxis: xAxis,
+          yAxis: yAxis,
+          valueYField: field,
+          valueXField: "date",
+          tooltip: am5.Tooltip.new(root, {
+            pointerOrientation: "right",
+            labelText: "{dateT}: {valueY}"
+          })
+        })
+      );
+      series.strokes.template.setAll({
+        strokeWidth: 3
+      });
+      series.data.setAll(dataMap);
+    }
+
+    createSeries(this.root, "Flux by month 2021", "sum");
   }
 
   ngOnDestroy() {

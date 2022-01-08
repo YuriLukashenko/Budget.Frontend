@@ -12,6 +12,7 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import {AppRoutingModule} from "./app-routing.module";
 import { UsersComponent } from './users/users.component';
+import { FluxMonthComponent } from './flux-month/flux-month.component';
 
 // @ts-ignore
 @NgModule({
@@ -21,7 +22,8 @@ import { UsersComponent } from './users/users.component';
     ColumnChartComponent,
     LoginComponent,
     HomeComponent,
-    UsersComponent
+    UsersComponent,
+    FluxMonthComponent
   ],
   imports: [
     BrowserModule,
