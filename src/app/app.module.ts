@@ -13,7 +13,8 @@ import { HomeComponent } from './home/home.component';
 import {AppRoutingModule} from "./app-routing.module";
 import { UsersComponent } from './users/users.component';
 import { FluxMonthComponent } from './flux-month/flux-month.component';
-import { SalaryAvgRateComponent } from './salary-avg-rate/salary-avg-rate.component';
+import { SalaryAvgRateComponent } from './salary/salary-avg-rate/salary-avg-rate.component';
+import { SalaryBonusesComponent } from './salary/salary-bonuses/salary-bonuses.component';
 
 // @ts-ignore
 @NgModule({
@@ -25,7 +26,8 @@ import { SalaryAvgRateComponent } from './salary-avg-rate/salary-avg-rate.compon
     HomeComponent,
     UsersComponent,
     FluxMonthComponent,
-    SalaryAvgRateComponent
+    SalaryAvgRateComponent,
+    SalaryBonusesComponent
   ],
   imports: [
     BrowserModule,

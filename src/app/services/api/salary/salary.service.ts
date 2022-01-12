@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {Observable} from "rxjs";
 import {ApiService} from "../api.service";
 import {map} from "rxjs/operators";
-import {IAverageRate, IChartData, IFluxMonthProfit} from "../../../dtos/DTOs";
+import {IAverageRate, IChartData, IColumnChartData, IFluxMonthProfit, ISalaryBonusesByType} from "../../../dtos/DTOs";
 
 const serviceRoute = 'salary/';
 @Injectable({
@@ -21,6 +21,15 @@ export class SalaryService {
       .pipe(
         map((data: IAverageRate[]) =>
           data.map(x => ({date: x.date, value: x.avgRate}) as IChartData)
+        )
+      );
+  }
+
+  getSalaryBonusesByTypes(): Observable<any> {
+    return this.get('bonuses/by/types')
+      .pipe(
+        map((data: ISalaryBonusesByType[]) =>
+          data.map(x => ({category: x.name, value: x.sum}) as IColumnChartData)
         )
       );
   }

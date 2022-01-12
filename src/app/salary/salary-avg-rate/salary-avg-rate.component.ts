@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {SalaryService} from "../services/api/salary/salary.service";
-import {IChartData} from "../dtos/DTOs";
+import {SalaryService} from "../../services/api/salary/salary.service";
+import {IChartData} from "../../dtos/DTOs";
 
 @Component({
   selector: 'app-salary-avg-rate',

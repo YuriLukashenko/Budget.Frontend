@@ -16,7 +16,17 @@ export interface IAverageRate {
   avgRate: number
 }
 
+export interface ISalaryBonusesByType {
+  name: string,
+  sum: number
+}
+
 export interface IChartData {
   date: Date,
+  value: number
+}
+
+export interface IColumnChartData {
+  category: string,
   value: number
 }
