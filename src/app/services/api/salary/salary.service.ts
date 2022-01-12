@@ -2,13 +2,13 @@ import { Injectable } from '@angular/core';
 import {Observable} from "rxjs";
 import {ApiService} from "../api.service";
 import {map} from "rxjs/operators";
-import {IChartData, IFluxMonthProfit} from "../../../dtos/DTOs";
+import {IAverageRate, IChartData, IFluxMonthProfit} from "../../../dtos/DTOs";
 
-const serviceRoute = 'flux/';
+const serviceRoute = 'salary/';
 @Injectable({
   providedIn: 'root'
 })
-export class FluxService {
+export class SalaryService {
 
   constructor(private api: ApiService) { }
 
@@ -16,11 +16,11 @@ export class FluxService {
     return this.api.get(serviceRoute + resource);
   }
 
-  getMonthProfits(): Observable<any>{
-    return this.get('month/profit')
+  getSalaryAverageRates(): Observable<any> {
+    return this.get('rates/avg')
       .pipe(
-        map((data: IFluxMonthProfit[]) =>
-          data.map(x => ({date: x.date, value: x.monthSum}) as IChartData)
+        map((data: IAverageRate[]) =>
+          data.map(x => ({date: x.date, value: x.avgRate}) as IChartData)
         )
       );
   }

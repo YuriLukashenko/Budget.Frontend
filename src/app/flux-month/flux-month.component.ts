@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FluxService} from "../services/api/flux/flux.service";
-import {IChartData, IFluxMonthProfit, IUserDTO} from "../dtos/DTOs";
-import { from } from 'rxjs';
-import { map } from 'rxjs/operators';
+import {IChartData, IFluxMonthProfit} from "../dtos/DTOs";
 
 @Component({
   selector: 'app-flux-month',
@@ -10,32 +8,21 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./flux-month.component.css']
 })
 export class FluxMonthComponent implements OnInit {
-  context = [] as IFluxMonthProfit[];
   chartData = [] as IChartData[];
   constructor(private fluxService: FluxService) { }
 
   ngOnInit(): void {
-    this.convertToChartData();
+    this.setContext();
   }
 
-  getContext(){
-    this.fluxService.getFluxesMonthProfits().subscribe(
+  setContext(){
+    this.fluxService.getMonthProfits().subscribe(
       data => {
-        this.context = data;
+        this.chartData = data;
       },
-      err => {
-        this.context = JSON.parse(err.error).message;
+        err => {
+        this.chartData = JSON.parse(err.error).message;
       }
     );
-  }
-
-  convertToChartData(){
-    this.fluxService.getFluxesMonthProfits()
-      .pipe(
-        map((data: IFluxMonthProfit[]) => data.map(x => ({ date: x.date, value: x.monthSum}) as IChartData)
-        ))
-      .subscribe((data) => {
-        this.chartData = data;
-      });
   }
 }

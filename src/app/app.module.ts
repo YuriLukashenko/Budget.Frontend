@@ -13,6 +13,7 @@ import { HomeComponent } from './home/home.component';
 import {AppRoutingModule} from "./app-routing.module";
 import { UsersComponent } from './users/users.component';
 import { FluxMonthComponent } from './flux-month/flux-month.component';
+import { SalaryAvgRateComponent } from './salary-avg-rate/salary-avg-rate.component';
 
 // @ts-ignore
 @NgModule({
@@ -23,7 +24,8 @@ import { FluxMonthComponent } from './flux-month/flux-month.component';
     LoginComponent,
     HomeComponent,
     UsersComponent,
-    FluxMonthComponent
+    FluxMonthComponent,
+    SalaryAvgRateComponent
   ],
   imports: [
     BrowserModule,

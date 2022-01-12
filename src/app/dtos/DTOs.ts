@@ -11,6 +11,11 @@ export interface IFluxMonthProfit {
   monthSum: number
 }
 
+export interface IAverageRate {
+  date: Date,
+  avgRate: number
+}
+
 export interface IChartData {
   date: Date,
   value: number
