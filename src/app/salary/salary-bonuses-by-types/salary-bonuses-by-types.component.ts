@@ -1,13 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {SalaryService} from "../../services/api/salary/salary.service";
 import {IColumnChartData} from "../../dtos/DTOs";
 
 @Component({
-  selector: 'app-salary-bonuses',
-  templateUrl: './salary-bonuses.component.html',
-  styleUrls: ['./salary-bonuses.component.css']
+  selector: 'app-salary-bonuses-by-types',
+  templateUrl: './salary-bonuses-by-types.component.html',
+  styleUrls: ['./salary-bonuses-by-types.component.css']
 })
-export class SalaryBonusesComponent implements OnInit {
+export class SalaryBonusesByTypesComponent implements OnInit {
+  @Input() ref: string | undefined;
   chartData = [] as IColumnChartData[];
   constructor(private salaryService: SalaryService) { }
 

@@ -12,6 +12,7 @@ import {IColumnChartData} from "../dtos/DTOs";
 export class ColumnChartComponent {
   private root: any = am5.Root;
   @Input() data: IColumnChartData[] | undefined;
+  @Input() ref: string | undefined;
 
   constructor() { }
 
@@ -21,7 +22,8 @@ export class ColumnChartComponent {
 
   createChart() {
     if(!this.root.container){
-      this.root = am5.Root.new("chartdiv");
+      this.ref ??= 'chartdiv';
+      this.root = am5.Root.new(this.ref);
       this.root.setThemes([am5themes_Animated.new(this.root)]);
     }
 

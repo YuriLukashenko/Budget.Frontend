@@ -14,8 +14,9 @@ import {AppRoutingModule} from "./app-routing.module";
 import { UsersComponent } from './users/users.component';
 import { FluxMonthComponent } from './flux-month/flux-month.component';
 import { SalaryAvgRateComponent } from './salary/salary-avg-rate/salary-avg-rate.component';
-import { SalaryBonusesComponent } from './salary/salary-bonuses/salary-bonuses.component';
+import { SalaryBonusesByTypesComponent } from './salary/salary-bonuses-by-types/salary-bonuses-by-types.component';
 import { SalaryBonusesByMonthsComponent } from './salary/salary-bonuses-by-months/salary-bonuses-by-months.component';
+import { SalaryBonusesContainerComponent } from './salary/salary-bonuses-container/salary-bonuses-container.component';
 
 // @ts-ignore
 @NgModule({
@@ -28,8 +29,9 @@ import { SalaryBonusesByMonthsComponent } from './salary/salary-bonuses-by-month
     UsersComponent,
     FluxMonthComponent,
     SalaryAvgRateComponent,
-    SalaryBonusesComponent,
-    SalaryBonusesByMonthsComponent
+    SalaryBonusesByTypesComponent,
+    SalaryBonusesByMonthsComponent,
+    SalaryBonusesContainerComponent
   ],
   imports: [
     BrowserModule,

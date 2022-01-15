@@ -15,6 +15,7 @@ export class ChartComponent {
 
   @Input() data: IChartData[] | undefined;
   @Input() seriesType: string | undefined;
+  @Input() ref: string | undefined;
 
   private root: any = am5.Root;
 
@@ -37,7 +38,8 @@ export class ChartComponent {
 
   createChart(){
     if(!this.root.container){
-      this.root = am5.Root.new("chartdiv");
+      this.ref ??= 'chartdiv';
+      this.root = am5.Root.new(this.ref);
       this.root.setThemes([am5themes_Animated.new(this.root)]);
     }
 

@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SalaryBonusesComponent } from './salary-bonuses.component';
+import { SalaryBonusesByTypesComponent } from './salary-bonuses-by-types.component';
 
 describe('SalaryBonusesComponent', () => {
-  let component: SalaryBonusesComponent;
-  let fixture: ComponentFixture<SalaryBonusesComponent>;
+  let component: SalaryBonusesByTypesComponent;
+  let fixture: ComponentFixture<SalaryBonusesByTypesComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SalaryBonusesComponent ]
+      declarations: [ SalaryBonusesByTypesComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SalaryBonusesComponent);
+    fixture = TestBed.createComponent(SalaryBonusesByTypesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

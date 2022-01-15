@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {IChartData, IColumnChartData} from "../../dtos/DTOs";
 import {SalaryService} from "../../services/api/salary/salary.service";
 
@@ -8,6 +8,7 @@ import {SalaryService} from "../../services/api/salary/salary.service";
   styleUrls: ['./salary-bonuses-by-months.component.css']
 })
 export class SalaryBonusesByMonthsComponent implements OnInit {
+  @Input() ref: string | undefined;
   chartData = [] as IChartData[];
   constructor(private salaryService: SalaryService) { }
 
