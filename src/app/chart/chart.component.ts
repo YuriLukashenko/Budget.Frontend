@@ -14,6 +14,7 @@ import {IChartData} from "../dtos/DTOs";
 export class ChartComponent {
 
   @Input() data: IChartData[] | undefined;
+  @Input() seriesType: string | undefined;
 
   private root: any = am5.Root;
 
@@ -76,27 +77,39 @@ export class ChartComponent {
     xAxis.data.setAll(dataMap);
 
     // Create series
-    function createSeries(root:any, name:any, field:any) {
+
+    if(this.seriesType === 'line' || this.seriesType === undefined) {
       let series = chart.series.push(
-        am5xy.LineSeries.new(root, {
-          name: name,
+        am5xy.LineSeries.new(this.root, {
           xAxis: xAxis,
           yAxis: yAxis,
-          valueYField: field,
+          valueYField: "sum",
           valueXField: "date",
-          tooltip: am5.Tooltip.new(root, {
+          tooltip: am5.Tooltip.new(this.root, {
             pointerOrientation: "right",
             labelText: "{dateT}: {valueY}"
           })
         })
       );
       series.strokes.template.setAll({
-        strokeWidth: 3
+        strokeWidth: 4
       });
       series.data.setAll(dataMap);
+    } else if (this.seriesType === 'column'){
+      let series = chart.series.push(
+        am5xy.ColumnSeries.new(this.root, {
+          xAxis: xAxis,
+          yAxis: yAxis,
+          valueYField: "sum",
+          valueXField: "date",
+          tooltip: am5.Tooltip.new(this.root, {
+            pointerOrientation: "right",
+            labelText: "{dateT}: {valueY}"
+          })
+        })
+      );
+      series.data.setAll(dataMap);
     }
-
-    createSeries(this.root, "Flux by month 2021", "sum");
   }
 
   ngOnDestroy() {

@@ -15,6 +15,7 @@ import { UsersComponent } from './users/users.component';
 import { FluxMonthComponent } from './flux-month/flux-month.component';
 import { SalaryAvgRateComponent } from './salary/salary-avg-rate/salary-avg-rate.component';
 import { SalaryBonusesComponent } from './salary/salary-bonuses/salary-bonuses.component';
+import { SalaryBonusesByMonthsComponent } from './salary/salary-bonuses-by-months/salary-bonuses-by-months.component';
 
 // @ts-ignore
 @NgModule({
@@ -27,7 +28,8 @@ import { SalaryBonusesComponent } from './salary/salary-bonuses/salary-bonuses.c
     UsersComponent,
     FluxMonthComponent,
     SalaryAvgRateComponent,
-    SalaryBonusesComponent
+    SalaryBonusesComponent,
+    SalaryBonusesByMonthsComponent
   ],
   imports: [
     BrowserModule,

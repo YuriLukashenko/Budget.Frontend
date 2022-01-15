@@ -21,6 +21,12 @@ export interface ISalaryBonusesByType {
   sum: number
 }
 
+export interface ISalaryBonusesByMonths {
+  seId: string,
+  date: Date,
+  sum: number
+}
+
 export interface IChartData {
   date: Date,
   value: number
