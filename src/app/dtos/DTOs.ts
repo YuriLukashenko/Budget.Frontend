@@ -27,6 +27,12 @@ export interface ISalaryBonusesByMonths {
   sum: number
 }
 
+export interface ISalaryTotalByMonths {
+  seId: string,
+  date: Date,
+  sum: number
+}
+
 export interface ISalaryWorkingHours {
   date: Date,
   sum: number

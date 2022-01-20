@@ -8,6 +8,7 @@ import {FluxMonthComponent} from "./flux-month/flux-month.component";
 import {SalaryAvgRateComponent} from "./salary/salary-avg-rate/salary-avg-rate.component";
 import {SalaryBonusesContainerComponent} from "./salary/salary-bonuses-container/salary-bonuses-container.component";
 import {SalaryWorkingHoursComponent} from "./salary/salary-working-hours/salary-working-hours.component";
+import {SalaryTotalByMonthsComponent} from "./salary/salary-total-by-months/salary-total-by-months.component";
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'salary/avg', component: SalaryAvgRateComponent },
   { path: 'salary/bonuses', component: SalaryBonusesContainerComponent },
   { path: 'salary/working-hours', component: SalaryWorkingHoursComponent },
+  { path: 'salary/enrollment/total', component: SalaryTotalByMonthsComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];
 

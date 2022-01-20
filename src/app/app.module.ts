@@ -18,6 +18,7 @@ import { SalaryBonusesByTypesComponent } from './salary/salary-bonuses-by-types/
 import { SalaryBonusesByMonthsComponent } from './salary/salary-bonuses-by-months/salary-bonuses-by-months.component';
 import { SalaryBonusesContainerComponent } from './salary/salary-bonuses-container/salary-bonuses-container.component';
 import { SalaryWorkingHoursComponent } from './salary/salary-working-hours/salary-working-hours.component';
+import { SalaryTotalByMonthsComponent } from './salary/salary-total-by-months/salary-total-by-months.component';
 
 // @ts-ignore
 @NgModule({
@@ -33,7 +34,8 @@ import { SalaryWorkingHoursComponent } from './salary/salary-working-hours/salar
     SalaryBonusesByTypesComponent,
     SalaryBonusesByMonthsComponent,
     SalaryBonusesContainerComponent,
-    SalaryWorkingHoursComponent
+    SalaryWorkingHoursComponent,
+    SalaryTotalByMonthsComponent
   ],
   imports: [
     BrowserModule,

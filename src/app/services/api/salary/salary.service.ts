@@ -8,7 +8,7 @@ import {
   IColumnChartData,
   IFluxMonthProfit,
   ISalaryBonusesByMonths,
-  ISalaryBonusesByType, ISalaryWorkingHours
+  ISalaryBonusesByType, ISalaryTotalByMonths, ISalaryWorkingHours
 } from "../../../dtos/DTOs";
 
 const serviceRoute = 'salary/';
@@ -54,6 +54,15 @@ export class SalaryService {
     return this.get('formation/hours')
       .pipe(
         map((data: ISalaryWorkingHours[]) =>
+          data.map(x => ({date: x.date, value: x.sum}) as IChartData)
+        )
+      );
+  }
+
+  getSalaryTotalByMonths(): Observable<any> {
+    return this.get('enrollment/total')
+      .pipe(
+        map((data: ISalaryTotalByMonths[]) =>
           data.map(x => ({date: x.date, value: x.sum}) as IChartData)
         )
       );
