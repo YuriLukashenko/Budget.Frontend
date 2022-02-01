@@ -47,3 +47,8 @@ export interface IColumnChartData {
   category: string,
   value: number
 }
+
+export interface IMenuItem {
+  routerLink: string,
+  displayName: string
+}

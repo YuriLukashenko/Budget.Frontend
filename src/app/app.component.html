@@ -14,17 +14,8 @@
       <li class="nav-item">
         <a href="/user" class="nav-link" *ngIf="isLoggedIn" routerLink="flux/month">Flux month</a>
       </li>
-      <li class="nav-item">
-        <a href="/user" class="nav-link" *ngIf="isLoggedIn" routerLink="salary/avg">Salary average rate</a>
-      </li>
-      <li class="nav-item">
-        <a href="/user" class="nav-link" *ngIf="isLoggedIn" routerLink="salary/bonuses">Salary bonuses</a>
-      </li>
-      <li class="nav-item">
-        <a href="/user" class="nav-link" *ngIf="isLoggedIn" routerLink="salary/working-hours">Salary working hours</a>
-      </li>
-      <li class="nav-item">
-        <a href="/user" class="nav-link" *ngIf="isLoggedIn" routerLink="salary/enrollment/total">Salary total</a>
+      <li class="nav-item" *ngIf="isLoggedIn">
+        <app-dropdown [name]="'Salary'" [items]="menuItems"></app-dropdown>
       </li>
     </ul>
 

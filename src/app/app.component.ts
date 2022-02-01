@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TokenStorageService } from './services/token-storage/token-storage.service';
+import {MenuService} from "./services/menu/menu.service";
+import {IMenuItem} from "./dtos/DTOs";
 
 @Component({
   selector: 'app-root',
@@ -9,8 +11,9 @@ import { TokenStorageService } from './services/token-storage/token-storage.serv
 export class AppComponent implements OnInit {
   isLoggedIn = false;
   username: string = "";
+  menuItems: IMenuItem[] | undefined;
 
-  constructor(private tokenStorageService: TokenStorageService) { }
+  constructor(private tokenStorageService: TokenStorageService, private menuService: MenuService) { }
 
   ngOnInit(): void {
     this.isLoggedIn = !!this.tokenStorageService.getToken();
@@ -19,6 +22,8 @@ export class AppComponent implements OnInit {
       const user = this.tokenStorageService.getUser();
       this.username = user.username;
     }
+
+    this.menuItems = this.menuService.getSalaryMenuItems();
   }
 
   logout(): void {
