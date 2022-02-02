@@ -12,6 +12,7 @@ import {IColumnChartData} from "../dtos/DTOs";
 export class ColumnChartComponent {
   private root: any = am5.Root;
   @Input() data: IColumnChartData[] | undefined;
+  @Input() context: any;
   @Input() ref: string | undefined;
 
   constructor() { }
@@ -38,6 +39,7 @@ export class ColumnChartComponent {
 
     let yAxis = chart.yAxes.push(
       am5xy.ValueAxis.new(this.root, {
+        min: this.context?.settings?.min ?? undefined,
         renderer: am5xy.AxisRendererY.new(this.root, {})
       })
     );

@@ -11,7 +11,8 @@ import {IMenuItem} from "./dtos/DTOs";
 export class AppComponent implements OnInit {
   isLoggedIn = false;
   username: string = "";
-  menuItems: IMenuItem[] | undefined;
+  salaryItems: IMenuItem[] | undefined;
+  fluxItems: IMenuItem[] | undefined;
 
   constructor(private tokenStorageService: TokenStorageService, private menuService: MenuService) { }
 
@@ -23,7 +24,8 @@ export class AppComponent implements OnInit {
       this.username = user.username;
     }
 
-    this.menuItems = this.menuService.getSalaryMenuItems();
+    this.salaryItems = this.menuService.getSalaryMenuItems();
+    this.fluxItems = this.menuService.getFluxMenuItems();
   }
 
   logout(): void {

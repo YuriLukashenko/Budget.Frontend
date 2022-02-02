@@ -11,6 +11,11 @@ export interface IFluxMonthProfit {
   monthSum: number
 }
 
+export interface IFluxYearProfit {
+  date: Date,
+  yearSum: number
+}
+
 export interface IAverageRate {
   date: Date,
   avgRate: number
