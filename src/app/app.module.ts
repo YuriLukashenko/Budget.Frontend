@@ -21,6 +21,7 @@ import { SalaryWorkingHoursComponent } from './salary/salary-working-hours/salar
 import { SalaryTotalByMonthsComponent } from './salary/salary-total-by-months/salary-total-by-months.component';
 import { DropdownComponent } from './components/dropdown/dropdown.component';
 import { FluxYearsComponent } from './flux/flux-years/flux-years.component';
+import { FluxDeltaMonthsComponent } from './flux/flux-delta-months/flux-delta-months.component';
 
 // @ts-ignore
 @NgModule({
@@ -39,7 +40,8 @@ import { FluxYearsComponent } from './flux/flux-years/flux-years.component';
     SalaryWorkingHoursComponent,
     SalaryTotalByMonthsComponent,
     DropdownComponent,
-    FluxYearsComponent
+    FluxYearsComponent,
+    FluxDeltaMonthsComponent
   ],
   imports: [
     BrowserModule,

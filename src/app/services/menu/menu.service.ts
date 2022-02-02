@@ -22,6 +22,7 @@ export class MenuService {
     let items: IMenuItem[] = [
       {routerLink: "flux/month", displayName: "Flux month"},
       {routerLink: "flux/years", displayName: "Flux years"},
+      {routerLink: "flux/delta/months", displayName: "Flux delta months"},
     ]
     return items;
   }

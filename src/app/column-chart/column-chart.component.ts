@@ -40,7 +40,9 @@ export class ColumnChartComponent {
     let yAxis = chart.yAxes.push(
       am5xy.ValueAxis.new(this.root, {
         min: this.context?.settings?.min ?? undefined,
-        renderer: am5xy.AxisRendererY.new(this.root, {})
+        numberFormat: this.context?.settings?.numberAxisFormat ?? '#,###',
+        renderer: am5xy.AxisRendererY.new(this.root, {
+        })
       })
     );
 
@@ -48,11 +50,19 @@ export class ColumnChartComponent {
       am5xy.CategoryAxis.new(this.root, {
         renderer: am5xy.AxisRendererX.new(this.root, {
           minGridDistance: 30,
-          strokeOpacity: 1,
         }),
         categoryField: "category"
       })
     );
+
+    if(this.context?.settings?.IsTruncateLabel) {
+      let xRenderer = xAxis.get("renderer");
+      xRenderer.labels.template.setAll({
+        oversizedBehavior: "truncate",
+        maxWidth: 60
+      })
+    }
+
     xAxis.data.setAll(dataMap);
 
     let series = chart.series.push(
@@ -64,15 +74,16 @@ export class ColumnChartComponent {
         categoryXField: "category",
         tooltip: am5.Tooltip.new(this.root, {
           pointerOrientation: "right",
-          labelText: "{categoryX}: {valueY}"
+          labelText: this.context?.settings?.numberTooltipFormat
+            ? "{categoryX}: {valueY.formatNumber('"+ this.context?.settings?.numberTooltipFormat +"')}"
+            : "{categoryX}: {valueY}"
         })
       })
     );
 
     series.data.setAll(dataMap);
 
-    let legend = chart.children.push(am5.Legend.new(this.root, {
-    }));
+    let legend = chart.children.push(am5.Legend.new(this.root, {}));
     legend.data.setAll(chart.series.values);
 
     chart.set("cursor", am5xy.XYCursor.new(this.root, {}));

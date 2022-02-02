@@ -16,6 +16,11 @@ export interface IFluxYearProfit {
   yearSum: number
 }
 
+export interface IDeltaResponse {
+  displayPeriod: string,
+  value: number
+}
+
 export interface IAverageRate {
   date: Date,
   avgRate: number
