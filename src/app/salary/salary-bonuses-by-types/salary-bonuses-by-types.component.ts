@@ -9,7 +9,7 @@ import {IColumnChartData} from "../../dtos/DTOs";
 })
 export class SalaryBonusesByTypesComponent implements OnInit {
   @Input() ref: string | undefined;
-  chartData = [] as IColumnChartData[];
+  context: any;
   constructor(private salaryService: SalaryService) { }
 
   ngOnInit(): void {
@@ -19,10 +19,12 @@ export class SalaryBonusesByTypesComponent implements OnInit {
   setContext(){
     this.salaryService.getSalaryBonusesByTypes().subscribe(
       data => {
-        this.chartData = data;
+        this.context = {
+          data
+        };
       },
       err => {
-        this.chartData = JSON.parse(err.error).message;
+        this.context = JSON.parse(err.error).message;
       }
     );
   }

@@ -2,7 +2,6 @@ import {Component, Input, OnInit, SimpleChanges} from '@angular/core';
 import * as am5 from "@amcharts/amcharts5";
 import * as am5xy from "@amcharts/amcharts5/xy";
 import am5themes_Animated from "@amcharts/amcharts5/themes/Animated";
-import {IColumnChartData} from "../dtos/DTOs";
 
 @Component({
   selector: 'app-column-chart',
@@ -11,7 +10,6 @@ import {IColumnChartData} from "../dtos/DTOs";
 })
 export class ColumnChartComponent {
   private root: any = am5.Root;
-  @Input() data: IColumnChartData[] | undefined;
   @Input() context: any;
   @Input() ref: string | undefined;
 
@@ -35,7 +33,7 @@ export class ColumnChartComponent {
       })
     );
 
-    let dataMap = this.data ?? [];
+    let dataMap = this.context?.data ?? [];
 
     let yAxis = chart.yAxes.push(
       am5xy.ValueAxis.new(this.root, {

@@ -8,7 +8,6 @@ import {FluxService} from "../../services/api/flux/flux.service";
   styleUrls: ['./flux-delta-months.component.css']
 })
 export class FluxDeltaMonthsComponent implements OnInit {
-  chartData = [] as IColumnChartData[];
   context: any;
   constructor(private fluxService: FluxService) { }
 
@@ -27,10 +26,9 @@ export class FluxDeltaMonthsComponent implements OnInit {
             numberTooltipFormat: "#.00%",
           }
         }
-        this.chartData = data;
       },
       err => {
-        this.chartData = JSON.parse(err.error).message;
+        this.context = JSON.parse(err).message;
       }
     );
   }

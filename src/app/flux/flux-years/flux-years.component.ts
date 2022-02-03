@@ -8,7 +8,6 @@ import {FluxService} from "../../services/api/flux/flux.service";
   styleUrls: ['./flux-years.component.css']
 })
 export class FluxYearsComponent implements OnInit {
-  chartData = [] as IColumnChartData[];
   context: any;
   constructor(private fluxService: FluxService) { }
 
@@ -25,10 +24,9 @@ export class FluxYearsComponent implements OnInit {
             min: 0
           }
         }
-        this.chartData = data;
       },
       err => {
-        this.chartData = JSON.parse(err.error).message;
+        this.context = JSON.parse(err.error).message;
       }
     );
   }
