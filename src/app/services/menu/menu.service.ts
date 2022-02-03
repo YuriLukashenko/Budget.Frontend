@@ -22,8 +22,10 @@ export class MenuService {
   getFluxMenuItems() : IMenuItem[] {
     let items: IMenuItem[] = [
       {routerLink: "flux/month", displayName: "Flux month"},
+      {routerLink: "flux/quarters", displayName: "Flux quarters"},
       {routerLink: "flux/years", displayName: "Flux years"},
       {routerLink: "flux/delta/months", displayName: "Flux delta months"},
+      {routerLink: "flux/delta/quarters", displayName: "Flux delta quarters"},
     ]
     return items;
   }

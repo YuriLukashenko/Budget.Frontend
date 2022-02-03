@@ -2,7 +2,14 @@ import { Injectable } from '@angular/core';
 import {Observable} from "rxjs";
 import {ApiService} from "../api.service";
 import {map} from "rxjs/operators";
-import {IChartData, IColumnChartData, IDeltaResponse, IFluxMonthProfit, IFluxYearProfit} from "../../../dtos/DTOs";
+import {
+  IChartData,
+  IColumnChartData,
+  IDeltaResponse,
+  IFluxMonthProfit,
+  IFluxQuarterProfit,
+  IFluxYearProfit
+} from "../../../dtos/DTOs";
 
 const serviceRoute = 'flux/';
 @Injectable({
@@ -25,6 +32,15 @@ export class FluxService {
       );
   }
 
+  getQuarterProfits(): Observable<any>{
+    return this.get('quarter/profit')
+      .pipe(
+        map((data: IFluxQuarterProfit[]) =>
+          data.map(x => ({date: x.date, value: x.quarterSum}) as IChartData)
+        )
+      );
+  }
+
   getYearsProfits(): Observable<any>{
     return this.get('year/profit')
       .pipe(
@@ -41,5 +57,14 @@ export class FluxService {
         data.map(x => ({category: x.displayPeriod, value: x.value}) as IColumnChartData)
       )
     );
+  }
+
+  getDeltaQuarterProfits(): Observable<any> {
+    return this.get('delta/quarter')
+      .pipe(
+        map((data: IDeltaResponse[]) =>
+          data.map(x => ({category: x.displayPeriod, value: x.value}) as IColumnChartData)
+        )
+      );
   }
 }

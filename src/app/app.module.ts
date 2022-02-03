@@ -23,6 +23,8 @@ import { DropdownComponent } from './components/dropdown/dropdown.component';
 import { FluxYearsComponent } from './flux/flux-years/flux-years.component';
 import { FluxDeltaMonthsComponent } from './flux/flux-delta-months/flux-delta-months.component';
 import { SalaryDeltaMonthsComponent } from './salary/salary-delta-months/salary-delta-months.component';
+import { FluxQuartersComponent } from './flux/flux-quarters/flux-quarters.component';
+import { FluxDeltaQuartersComponent } from './flux/flux-delta-quarters/flux-delta-quarters.component';
 
 // @ts-ignore
 @NgModule({
@@ -43,7 +45,9 @@ import { SalaryDeltaMonthsComponent } from './salary/salary-delta-months/salary-
     DropdownComponent,
     FluxYearsComponent,
     FluxDeltaMonthsComponent,
-    SalaryDeltaMonthsComponent
+    SalaryDeltaMonthsComponent,
+    FluxQuartersComponent,
+    FluxDeltaQuartersComponent
   ],
   imports: [
     BrowserModule,
