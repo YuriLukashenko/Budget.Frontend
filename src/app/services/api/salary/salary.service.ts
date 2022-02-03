@@ -5,7 +5,7 @@ import {map} from "rxjs/operators";
 import {
   IAverageRate,
   IChartData,
-  IColumnChartData,
+  IColumnChartData, IDeltaResponse,
   IFluxMonthProfit,
   ISalaryBonusesByMonths,
   ISalaryBonusesByType, ISalaryTotalByMonths, ISalaryWorkingHours
@@ -64,6 +64,15 @@ export class SalaryService {
       .pipe(
         map((data: ISalaryTotalByMonths[]) =>
           data.map(x => ({date: x.date, value: x.sum}) as IChartData)
+        )
+      );
+  }
+
+  getSalaryDeltaByMonths(): Observable<any> {
+    return this.get('delta/months')
+      .pipe(
+        map((data: IDeltaResponse[]) =>
+          data.map(x => ({category: x.displayPeriod, value: x.value}) as IColumnChartData)
         )
       );
   }

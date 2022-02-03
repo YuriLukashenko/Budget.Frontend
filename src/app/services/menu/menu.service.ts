@@ -14,6 +14,7 @@ export class MenuService {
       {routerLink: "salary/bonuses", displayName: "Salary bonuses"},
       {routerLink: "salary/working-hours", displayName: "Salary working hours"},
       {routerLink: "salary/enrollment/total", displayName: "Salary total"},
+      {routerLink: "salary/delta/months", displayName: "Salary delta by months"},
     ]
     return items;
   }
