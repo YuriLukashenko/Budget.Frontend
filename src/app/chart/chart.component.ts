@@ -12,9 +12,7 @@ import {IChartData} from "../dtos/DTOs";
   styleUrls: ['./chart.component.css']
 })
 export class ChartComponent {
-
-  @Input() data: IChartData[] | undefined;
-  @Input() seriesType: string | undefined;
+  @Input() context: any;
   @Input() ref: string | undefined;
 
   private root: any = am5.Root;
@@ -54,7 +52,7 @@ export class ChartComponent {
       })
     );
 
-    let dataMap = this.data?.map(x => (
+    let dataMap = this.context?.data?.map((x:any) => (
       {
         date: new Date(x.date).getTime(),
         dateT: new Date(x.date),
@@ -80,7 +78,7 @@ export class ChartComponent {
 
     // Create series
 
-    if(this.seriesType === 'line' || this.seriesType === undefined) {
+    if(this.context?.settings?.seriesType === 'line' || this.context?.settings?.seriesType === undefined) {
       let series = chart.series.push(
         am5xy.LineSeries.new(this.root, {
           xAxis: xAxis,
@@ -97,7 +95,7 @@ export class ChartComponent {
         strokeWidth: 4
       });
       series.data.setAll(dataMap);
-    } else if (this.seriesType === 'column'){
+    } else if (this.context?.settings?.seriesType === 'column'){
       let series = chart.series.push(
         am5xy.ColumnSeries.new(this.root, {
           xAxis: xAxis,

@@ -4,7 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import {UsersComponent} from "./users/users.component";
-import {FluxMonthComponent} from "./flux-month/flux-month.component";
+import {FluxMonthComponent} from "./flux/flux-month/flux-month.component";
 import {SalaryAvgRateComponent} from "./salary/salary-avg-rate/salary-avg-rate.component";
 import {SalaryBonusesContainerComponent} from "./salary/salary-bonuses-container/salary-bonuses-container.component";
 import {SalaryWorkingHoursComponent} from "./salary/salary-working-hours/salary-working-hours.component";

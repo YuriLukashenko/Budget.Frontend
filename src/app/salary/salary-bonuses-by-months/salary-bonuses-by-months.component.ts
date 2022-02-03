@@ -9,7 +9,7 @@ import {SalaryService} from "../../services/api/salary/salary.service";
 })
 export class SalaryBonusesByMonthsComponent implements OnInit {
   @Input() ref: string | undefined;
-  chartData = [] as IChartData[];
+  context: any;
   constructor(private salaryService: SalaryService) { }
 
   ngOnInit(): void {
@@ -19,10 +19,15 @@ export class SalaryBonusesByMonthsComponent implements OnInit {
   setContext(){
     this.salaryService.getSalaryBonusesByMonths().subscribe(
       data => {
-        this.chartData = data;
+        this.context = {
+          data,
+          settings: {
+            seriesType: 'column'
+          }
+        };
       },
       err => {
-        this.chartData = JSON.parse(err.error).message;
+        this.context = JSON.parse(err.error).message;
       }
     );
   }

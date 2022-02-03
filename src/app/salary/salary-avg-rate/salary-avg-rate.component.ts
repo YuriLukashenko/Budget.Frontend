@@ -8,7 +8,7 @@ import {IChartData} from "../../dtos/DTOs";
   styleUrls: ['./salary-avg-rate.component.css']
 })
 export class SalaryAvgRateComponent implements OnInit {
-  chartData = [] as IChartData[];
+  context: any;
   constructor(private salaryService: SalaryService) { }
 
   ngOnInit(): void {
@@ -18,10 +18,12 @@ export class SalaryAvgRateComponent implements OnInit {
   setContext(){
     this.salaryService.getSalaryAverageRates().subscribe(
       data => {
-        this.chartData = data;
+        this.context = {
+          data
+        };
       },
       err => {
-        this.chartData = JSON.parse(err.error).message;
+        this.context = JSON.parse(err.error).message;
       }
     );
   }

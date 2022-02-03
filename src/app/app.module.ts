@@ -12,7 +12,7 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import {AppRoutingModule} from "./app-routing.module";
 import { UsersComponent } from './users/users.component';
-import { FluxMonthComponent } from './flux-month/flux-month.component';
+import { FluxMonthComponent } from './flux/flux-month/flux-month.component';
 import { SalaryAvgRateComponent } from './salary/salary-avg-rate/salary-avg-rate.component';
 import { SalaryBonusesByTypesComponent } from './salary/salary-bonuses-by-types/salary-bonuses-by-types.component';
 import { SalaryBonusesByMonthsComponent } from './salary/salary-bonuses-by-months/salary-bonuses-by-months.component';
