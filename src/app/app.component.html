@@ -15,6 +15,9 @@
         <app-dropdown [name]="'Flux'" [items]="fluxItems"></app-dropdown>
       </li>
       <li class="nav-item" *ngIf="isLoggedIn">
+        <app-dropdown [name]="'Reflux'" [items]="refluxItems"></app-dropdown>
+      </li>
+      <li class="nav-item" *ngIf="isLoggedIn">
         <app-dropdown [name]="'Salary'" [items]="salaryItems"></app-dropdown>
       </li>
     </ul>

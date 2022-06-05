@@ -13,6 +13,7 @@ export class AppComponent implements OnInit {
   username: string = "";
   salaryItems: IMenuItem[] | undefined;
   fluxItems: IMenuItem[] | undefined;
+  refluxItems: IMenuItem[] | undefined;
 
   constructor(private tokenStorageService: TokenStorageService, private menuService: MenuService) { }
 
@@ -26,6 +27,7 @@ export class AppComponent implements OnInit {
 
     this.salaryItems = this.menuService.getSalaryMenuItems();
     this.fluxItems = this.menuService.getFluxMenuItems();
+    this.refluxItems = this.menuService.getRefluxMenuItems();
   }
 
   logout(): void {

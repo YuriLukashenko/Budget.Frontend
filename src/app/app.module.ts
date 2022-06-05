@@ -25,6 +25,7 @@ import { FluxDeltaMonthsComponent } from './flux/flux-delta-months/flux-delta-mo
 import { SalaryDeltaMonthsComponent } from './salary/salary-delta-months/salary-delta-months.component';
 import { FluxQuartersComponent } from './flux/flux-quarters/flux-quarters.component';
 import { FluxDeltaQuartersComponent } from './flux/flux-delta-quarters/flux-delta-quarters.component';
+import { RefluxMonthComponent } from './reflux/reflux-month/reflux-month.component';
 
 // @ts-ignore
 @NgModule({
@@ -47,7 +48,8 @@ import { FluxDeltaQuartersComponent } from './flux/flux-delta-quarters/flux-delt
     FluxDeltaMonthsComponent,
     SalaryDeltaMonthsComponent,
     FluxQuartersComponent,
-    FluxDeltaQuartersComponent
+    FluxDeltaQuartersComponent,
+    RefluxMonthComponent
   ],
   imports: [
     BrowserModule,

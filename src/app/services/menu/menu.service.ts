@@ -29,4 +29,11 @@ export class MenuService {
     ]
     return items;
   }
+
+  getRefluxMenuItems(): IMenuItem[] {
+    let items: IMenuItem[] = [
+      {routerLink: "reflux/month", displayName: "Reflux month"}
+    ]
+    return items;
+  }
 }
