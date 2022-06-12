@@ -72,3 +72,15 @@ export interface IMenuItem {
   routerLink: string,
   displayName: string
 }
+
+export interface RefluxType {
+  id: number,
+  name: string
+}
+
+export interface IRefluxTypeDTO {
+  rtId: number
+  name: string
+  comment: string
+}
+
