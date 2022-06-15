@@ -26,6 +26,16 @@ export class RefluxService {
       );
   }
 
+  getMonthSpendsByType(typeId: number): Observable<any>{
+    return this.get('month/spend/2022/' + typeId.toString())
+      .pipe(
+        map((data: IFluxMonthSpend[]) =>
+          data.map(x => ({date: x.date, value: x.monthSum}) as IChartData)
+        )
+      );
+  }
+
+
   getRefluxTypes(): Observable<any>{
     return this.get('types/2022')
       .pipe(

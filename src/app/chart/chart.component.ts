@@ -40,7 +40,11 @@ export class ChartComponent {
       this.root = am5.Root.new(this.ref);
       this.root.setThemes([am5themes_Animated.new(this.root)]);
     }
-
+    Array.from(this.root.container.children).forEach((chart:any)=>{
+      chart.series.clear();
+      chart.xAxes.clear();
+      chart.yAxes.clear();
+    });
     let chart = this.root.container.children.push(
       am5xy.XYChart.new(this.root, {
         panX: false,

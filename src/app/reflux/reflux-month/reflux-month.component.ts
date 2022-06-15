@@ -19,16 +19,44 @@ export class RefluxMonthComponent implements OnInit {
   }
 
   setContext(){
+    this.setMonthSpends();
+    this.setTypes();
+  }
+
+  setMonthSpends(){
     this.refluxService.getMonthSpends().subscribe(
       data => {
         this.context = {
-          data
+          data,
+          settings: {
+            seriesType: 'column'
+          }
         };
       },
       err => {
         this.context = JSON.parse(err.error).message;
       }
     );
+  }
+
+  setMonthSpendsByType(typeId: number){
+    this.refluxService.getMonthSpendsByType(typeId).subscribe(
+      data => {
+        this.context = {
+          data,
+          settings: {
+            seriesType: 'column'
+          }
+        };
+      },
+      err => {
+        this.context = JSON.parse(err.error).message;
+      }
+    );
+  }
+
+
+  setTypes(){
     this.refluxService.getRefluxTypes().subscribe(
       data => {
         this.refluxTypes = data?.map((x:any) => (
@@ -43,7 +71,9 @@ export class RefluxMonthComponent implements OnInit {
     );
   }
 
+
   onSelectChange(e: any){
-    console.log(e.target.value);
+    let typeId = e.target.value;
+    this.setMonthSpendsByType(typeId);
   }
 }
