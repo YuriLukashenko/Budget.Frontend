@@ -65,7 +65,10 @@ export class RefluxMonthComponent implements OnInit {
             name: x.name
           }
         )) ?? [];
-
+        this.refluxTypes.splice(0, 0, {
+          id: 0,
+          name: "Total"
+        })
       },
       err => { this.refluxService = JSON.parse(err.error).message}
     );
@@ -74,6 +77,11 @@ export class RefluxMonthComponent implements OnInit {
 
   onSelectChange(e: any){
     let typeId = e.target.value;
-    this.setMonthSpendsByType(typeId);
+    if(typeId == 0){
+      this.setMonthSpends();
+    }
+    else{
+      this.setMonthSpendsByType(typeId);
+    }
   }
 }
