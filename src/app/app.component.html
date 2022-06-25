@@ -20,6 +20,9 @@
       <li class="nav-item" *ngIf="isLoggedIn">
         <app-dropdown [name]="'Salary'" [items]="salaryItems"></app-dropdown>
       </li>
+      <li class="nav-item" *ngIf="isLoggedIn">
+        <app-dropdown [name]="'Current cash'" [items]="currentCashItems"></app-dropdown>
+      </li>
     </ul>
 
     <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">

@@ -14,6 +14,7 @@ export class AppComponent implements OnInit {
   salaryItems: IMenuItem[] | undefined;
   fluxItems: IMenuItem[] | undefined;
   refluxItems: IMenuItem[] | undefined;
+  currentCashItems: IMenuItem[] | undefined;
 
   constructor(private tokenStorageService: TokenStorageService, private menuService: MenuService) { }
 
@@ -28,6 +29,7 @@ export class AppComponent implements OnInit {
     this.salaryItems = this.menuService.getSalaryMenuItems();
     this.fluxItems = this.menuService.getFluxMenuItems();
     this.refluxItems = this.menuService.getRefluxMenuItems();
+    this.currentCashItems = this.menuService.getCurrentCashMenuItems();
   }
 
   logout(): void {

@@ -36,4 +36,11 @@ export class MenuService {
     ]
     return items;
   }
+
+  getCurrentCashMenuItems(): IMenuItem[] {
+    let items: IMenuItem[] = [
+      {routerLink: "currentCash", displayName: "Show cash"}
+    ]
+    return items;
+  }
 }
