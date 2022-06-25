@@ -24,8 +24,7 @@
         <app-dropdown [name]="'Current cash'" [items]="currentCashItems"></app-dropdown>
       </li>
     </ul>
-
-    <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
+    <ul class="navbar-nav" *ngIf="!isLoggedIn">
 <!--      <li class="nav-item">-->
 <!--        <a href="/register" class="nav-link" routerLink="register">Sign Up</a>-->
 <!--      </li>-->
@@ -35,6 +34,12 @@
     </ul>
 
     <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
+      <div class="nav-item circle">
+        <a class="circle-a nav-link">{{currentCashDisplayValue}}</a>
+      </div>
+      <div class="nav-item circle ">
+        <a class="circle-a nav-link">{{totalValuesDisplayValue}}</a>
+      </div>
       <li class="nav-item">
         <a href="/profile" class="nav-link" routerLink="profile">{{ username }}</a>
       </li>
