@@ -5,9 +5,8 @@ import { AppComponent } from './app.component';
 import { ChartComponent } from './chart/chart.component';
 import { DatePipe } from "@angular/common";
 import { ColumnChartComponent } from './column-chart/column-chart.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import {AppRoutingModule} from "./app-routing.module";
@@ -51,13 +50,14 @@ import { CurrentCashComponent } from './current-cash/current-cash/current-cash.c
     FluxQuartersComponent,
     FluxDeltaQuartersComponent,
     RefluxMonthComponent,
-    CurrentCashComponent
+    CurrentCashComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]

@@ -1,1 +1,45 @@
-<p>current-cash works!</p>
+<div class="container current-cash-container">
+  <div class="header">
+    <div class="d-flex flex-row">
+      <h2>Current cash:</h2>
+      <h2 class="ml-3">{{currentCashDisplayValue}}</h2>
+    </div>
+    <div class="d-flex flex-row">
+      <h2>Real cash:</h2>
+      <h2 class="ml-3">{{realCashDisplayValue}}</h2>
+    </div>
+    <div >
+    </div>
+  </div>
+  <form [formGroup]="cashLocationsForm">
+    <div class="form-group current-cash-form">
+      <div class="privat">
+        <label>Privatbank universal: </label>
+        <input type=number class="form-control" name="name" formControlName="privatUniversal" />
+        <label>Privatbank payout: </label>
+        <input type=number class="form-control" name="name" formControlName="privatPayout" />
+        <label class="m"></label>
+      </div>
+      <div class="cash">
+        <label>Cash: </label>
+        <input type=number class="form-control" name="name" formControlName="cash" />
+      </div>
+      <div class="mono">
+        <label>Monobank black: </label>
+        <input type=number class="form-control" name="name" formControlName="monoBlack" />
+        <label>Monobank white: </label>
+        <input type=number class="form-control" name="name" formControlName="monoWhite" />
+        <label>Monobank dollars: </label>
+        <input type=number class="form-control" name="name" formControlName="monoUsd" />
+        <label>Monobank єПідтримка: </label>
+        <input type=number class="form-control" name="name" formControlName="monoSupport" />
+      </div>
+      <div class="other">
+        <label>Additional: </label>
+        <input type=number class="form-control" name="name" formControlName="additional" />
+        <label>Outside: </label>
+        <input type=number class="form-control" name="name" formControlName="outside" />
+      </div>
+    </div>
+  </form>
+</div>
