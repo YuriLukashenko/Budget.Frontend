@@ -1,16 +1,16 @@
 <div class="container current-cash-container">
   <div class="header">
-    <div class="d-flex flex-row">
-      <h2>Current cash:</h2>
-      <h2 class="ml-3">{{currentCash}}</h2>
+    <div>
+      <h4>Current cash:</h4>
+      <h4>{{currentCash}}</h4>
     </div>
-    <div class="d-flex flex-row">
-      <h2>Real cash:</h2>
-      <h2 class="ml-3">{{realCash}}</h2>
+    <div >
+      <h4>Real cash:</h4>
+      <h4>{{realCash}}</h4>
     </div>
-    <div class="d-flex flex-row">
-      <h2>Difference:</h2>
-      <h2 class="ml-3">{{difference}}</h2>
+    <div>
+      <h4>Difference:</h4>
+      <h4>{{difference}}</h4>
     </div>
   </div>
   <form [formGroup]="cashLocationsForm" (ngSubmit)="onSubmit()">
@@ -54,6 +54,26 @@
               <i class="fa fa-solid fa-plus"></i>
             </button>
           </div>
+        </div>
+      </div>
+      <div class="fop">
+        <label>Working fop: </label>
+        <input type=number class="form-control" formControlName="workingFop" />
+        <label>Cumulative fop: </label>
+        <input type=number class="form-control" formControlName="cumulativeFop" />
+      </div>
+      <div class="mt-5">
+      </div>
+      <div class="hrivnas">
+        <div>
+          <h4>Working hrivnas:</h4>
+          <h4>{{workingHrivnas}}</h4>
+        </div>
+      </div>
+      <div class="total">
+        <div>
+          <h4>Total current:</h4>
+          <h4>{{totalCurrent}}</h4>
         </div>
       </div>
     </div>

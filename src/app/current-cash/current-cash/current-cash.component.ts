@@ -3,10 +3,10 @@ import {CurrentCashService} from "../../services/api/current-cash/current-cash.s
 import {FormControl, FormGroup} from "@angular/forms";
 import {LocationService} from "../../services/api/location/location.service";
 import {RateService} from "../../services/api/rate/rate.service";
-import {CashLocationsDTO} from "../../dtos/DTOs";
+import {CashLocationsDTO, IFopDTO} from "../../dtos/DTOs";
+import {FopService} from "../../services/api/fop/fop.service";
 
-export enum LocationTypes
-{
+export enum LocationTypes {
   None = 0,
   Cash = 1,
   PrivatUniversal = 2,
@@ -31,7 +31,14 @@ export class CurrentCashComponent implements OnInit {
   cashLocationsForm: FormGroup;
   usdRate: number = 0;
   dataStatus: string = 'ACTIVE' //| 'PENDING' | 'FAILURE';
-  constructor(private currentCashService: CurrentCashService, private locationService: LocationService, private rateService: RateService) {
+  fopBalance: IFopDTO[] = [];
+  workingUsd: number = 0;
+  workingHrivnas: number = 0;
+  totalCurrent: number = 0;
+  constructor(private currentCashService: CurrentCashService,
+              private locationService: LocationService,
+              private rateService: RateService,
+              private fopService: FopService) {
     this.cashLocationsForm = new FormGroup({
       "privatUniversal": new FormControl(),
       "privatPayout": new FormControl(),
@@ -44,6 +51,8 @@ export class CurrentCashComponent implements OnInit {
       "addAdditional":new FormControl(),
       "outside": new FormControl(),
       "addOutside":new FormControl(),
+      "workingFop":new FormControl(),
+      "cumulativeFop":new FormControl()
     });
   }
 
@@ -51,7 +60,8 @@ export class CurrentCashComponent implements OnInit {
     this.currentCashService.getAll().subscribe(
       data => {
         this.currentCash = Math.floor(data);
-        this.difference = this.realCash - this.currentCash;
+        this.updateTotalCurrent();
+        this.updateDifference();
       },
       err =>  {this.currentCash = -Infinity}
     );
@@ -60,20 +70,31 @@ export class CurrentCashComponent implements OnInit {
       err =>  {console.log(err)}
     );
     this.rateService.getByName("usd").subscribe(
-      data => {this.usdRate = data},
+      data => {
+        this.usdRate = data
+        this.updateWorkingHrivnas();
+      },
+      err =>  {console.log(err)}
+    );
+    this.fopService.getAll().subscribe(
+      data => {
+        this.fopBalance = data;
+        this.loadFop(data);
+      },
       err =>  {console.log(err)}
     );
     this.cashLocationsForm.valueChanges.subscribe(
       data => {
         this.realCash = Math.floor(this.sumAll(data));
-        this.difference = this.realCash - this.currentCash;
+        this.workingUsd = data.workingFop
+        this.updateDifference();
+        this.updateFop();
       },
       err =>  {this.realCash = -Infinity}
     );
   }
 
   loadForm(data: any){
-    console.log(data);
     this.cashLocationsForm.controls['cash'].setValue(data.find((x:any) => x.type == LocationTypes.Cash).value);
     this.cashLocationsForm.controls['monoUsd'].setValue(data.find((x:any) => x.type == LocationTypes.MonoUsd).value);
     this.cashLocationsForm.controls['outside'].setValue(data.find((x:any) => x.type == LocationTypes.Outside).value);
@@ -83,6 +104,31 @@ export class CurrentCashComponent implements OnInit {
     this.cashLocationsForm.controls['monoSupport'].setValue(data.find((x:any) => x.type == LocationTypes.MonoSupport).value);
     this.cashLocationsForm.controls['privatPayout'].setValue(data.find((x:any) => x.type == LocationTypes.PrivatPayout).value);
     this.cashLocationsForm.controls['privatUniversal'].setValue(data.find((x:any) => x.type == LocationTypes.PrivatUniversal).value);
+  }
+
+  loadFop(data: IFopDTO[]) {
+    console.log(data);
+    this.workingUsd = data.find((x:IFopDTO) => x.type == 'Working')?.value ?? 0;
+    this.cashLocationsForm.controls['workingFop'].setValue(this.workingUsd);
+    this.cashLocationsForm.controls['cumulativeFop'].setValue(data.find((x:IFopDTO) => x.type == 'Cumulative')?.value ?? 0);
+    this.updateFop();
+  }
+
+  updateFop(){
+    this.updateWorkingHrivnas();
+    this.updateTotalCurrent();
+  }
+
+  updateWorkingHrivnas(){
+    this.workingHrivnas = this.workingUsd * this.usdRate;
+  }
+
+  updateTotalCurrent(){
+    this.totalCurrent = this.workingHrivnas + this.currentCash;
+  }
+
+  updateDifference(){
+    this.difference = this.realCash - this.currentCash;
   }
 
   sumAll(x: any) {
@@ -111,14 +157,19 @@ export class CurrentCashComponent implements OnInit {
 
   onSubmit(){
     this.dataStatus = 'PENDING';
-    let body = this.map(this.cashLocationsForm.value);
-    this.locationService.postAll(body).subscribe(
+    let locationBody = this.mapLocation(this.cashLocationsForm.value);
+    this.locationService.postAll(locationBody).subscribe(
+      data => {this.dataStatus = 'ACTIVE'},
+      err =>  {this.dataStatus = 'FAILURE'}
+    );
+    let fopBody = this.mapFop(this.cashLocationsForm.value);
+    this.fopService.postAll(fopBody).subscribe(
       data => {this.dataStatus = 'ACTIVE'},
       err =>  {this.dataStatus = 'FAILURE'}
     );
   }
 
-  map(formGroupValue: any): CashLocationsDTO[]{
+  mapLocation(formGroupValue: any): CashLocationsDTO[]{
     let result: CashLocationsDTO[] = [];
     result.push({type: LocationTypes.Cash, value: formGroupValue.cash})
     result.push({type: LocationTypes.PrivatUniversal, value: formGroupValue.privatUniversal})
@@ -129,6 +180,13 @@ export class CurrentCashComponent implements OnInit {
     result.push({type: LocationTypes.MonoSupport, value: formGroupValue.monoSupport})
     result.push({type: LocationTypes.Additional, value: formGroupValue.additional})
     result.push({type: LocationTypes.Outside, value: formGroupValue.outside})
+    return result;
+  }
+
+  mapFop(formGroupValue: any): IFopDTO[] {
+    let result: IFopDTO[] = [];
+    result.push({fopId: 1, type: "Working", value: formGroupValue.workingFop});
+    result.push({fopId: 2, type: "Cumulative", value: formGroupValue.cumulativeFop});
     return result;
   }
 }

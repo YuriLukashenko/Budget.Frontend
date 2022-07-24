@@ -88,3 +88,9 @@ export interface CashLocationsDTO{
   value: number;
   type: number;
 }
+
+export interface IFopDTO {
+  fopId: number
+  value: number
+  type: string
+}
