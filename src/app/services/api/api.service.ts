@@ -18,4 +18,11 @@ export class ApiService {
       headers: { authorization: this.tokenStorage.getToken() }
     });
   }
+
+  post(path:string, body: any): Observable<any> {
+    return this.http.post(API_URL + path, body, {
+      responseType: 'json',
+      headers: { authorization: this.tokenStorage.getToken() }
+    });
+  }
 }

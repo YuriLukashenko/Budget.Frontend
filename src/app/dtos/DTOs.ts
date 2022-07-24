@@ -84,3 +84,7 @@ export interface IRefluxTypeDTO {
   comment: string
 }
 
+export interface CashLocationsDTO{
+  value: number;
+  type: number;
+}

@@ -16,10 +16,16 @@ export class CurrentCashService {
     return this.api.get(serviceRoute + resource);
   }
 
+  post(resource: string, body: any): Observable<any> {
+    return this.api.post(serviceRoute + resource, body);
+  }
+
   getAll(): Observable<any>{
     return this.get('all')
       .pipe(
         map((data: number) => data)
       );
   }
+
+
 }

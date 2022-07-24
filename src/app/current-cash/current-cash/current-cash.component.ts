@@ -3,6 +3,7 @@ import {CurrentCashService} from "../../services/api/current-cash/current-cash.s
 import {FormControl, FormGroup} from "@angular/forms";
 import {LocationService} from "../../services/api/location/location.service";
 import {RateService} from "../../services/api/rate/rate.service";
+import {CashLocationsDTO} from "../../dtos/DTOs";
 
 export enum LocationTypes
 {
@@ -29,6 +30,7 @@ export class CurrentCashComponent implements OnInit {
   difference: number = 0;
   cashLocationsForm: FormGroup;
   usdRate: number = 0;
+  dataStatus: string = 'ACTIVE' //| 'PENDING' | 'FAILURE';
   constructor(private currentCashService: CurrentCashService, private locationService: LocationService, private rateService: RateService) {
     this.cashLocationsForm = new FormGroup({
       "privatUniversal": new FormControl(),
@@ -105,5 +107,28 @@ export class CurrentCashComponent implements OnInit {
       let prev = this.cashLocationsForm.controls['outside'].value;
       let current =  this.cashLocationsForm.controls['addOutside'].value;
       this.cashLocationsForm.controls['outside'].setValue( prev + current);
+  }
+
+  onSubmit(){
+    this.dataStatus = 'PENDING';
+    let body = this.map(this.cashLocationsForm.value);
+    this.locationService.postAll(body).subscribe(
+      data => {this.dataStatus = 'ACTIVE'},
+      err =>  {this.dataStatus = 'FAILURE'}
+    );
+  }
+
+  map(formGroupValue: any): CashLocationsDTO[]{
+    let result: CashLocationsDTO[] = [];
+    result.push({type: LocationTypes.Cash, value: formGroupValue.cash})
+    result.push({type: LocationTypes.PrivatUniversal, value: formGroupValue.privatUniversal})
+    result.push({type: LocationTypes.PrivatPayout, value: formGroupValue.privatPayout})
+    result.push({type: LocationTypes.MonoBlack, value: formGroupValue.monoBlack})
+    result.push({type: LocationTypes.MonoWhite, value: formGroupValue.monoWhite})
+    result.push({type: LocationTypes.MonoUsd, value: formGroupValue.monoUsd})
+    result.push({type: LocationTypes.MonoSupport, value: formGroupValue.monoSupport})
+    result.push({type: LocationTypes.Additional, value: formGroupValue.additional})
+    result.push({type: LocationTypes.Outside, value: formGroupValue.outside})
+    return result;
   }
 }

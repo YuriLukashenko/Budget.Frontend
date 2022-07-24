@@ -14,10 +14,21 @@ export class LocationService {
     return this.api.get(serviceRoute + resource);
   }
 
+  post(resource: string, body: any): Observable<any> {
+    return this.api.post(serviceRoute + resource, body);
+  }
+
   getAll(): Observable<any>{
     return this.get('all')
       .pipe(
         map((data: number) => data)
+      );
+  }
+
+  postAll(body: any):  Observable<any> {
+    return this.post('update', body)
+      .pipe(
+        map((data: any) => data, )
       );
   }
 }

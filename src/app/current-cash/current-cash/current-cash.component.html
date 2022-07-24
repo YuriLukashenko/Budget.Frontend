@@ -13,7 +13,7 @@
       <h2 class="ml-3">{{difference}}</h2>
     </div>
   </div>
-  <form [formGroup]="cashLocationsForm">
+  <form [formGroup]="cashLocationsForm" (ngSubmit)="onSubmit()">
     <div class="form-group current-cash-form">
       <div class="privat">
         <label>Privatbank universal: </label>
@@ -57,5 +57,9 @@
         </div>
       </div>
     </div>
+    <button type="submit" class="btn" [ngClass]="(dataStatus==='ACTIVE')? 'btn-success' :(dataStatus==='PENDING' ? 'btn-warning' : 'btn-danger') " [disabled]="cashLocationsForm.status !== 'VALID'">
+      <i class="fas fa-pen mr-1"></i>
+      <span>Update</span>
+    </button>
   </form>
 </div>
