@@ -26,6 +26,7 @@ import { FluxQuartersComponent } from './flux/flux-quarters/flux-quarters.compon
 import { FluxDeltaQuartersComponent } from './flux/flux-delta-quarters/flux-delta-quarters.component';
 import { RefluxMonthComponent } from './reflux/reflux-month/reflux-month.component';
 import { CurrentCashComponent } from './current-cash/current-cash/current-cash.component';
+import { FluxAddComponent } from './flux/flux-add/flux-add.component';
 
 // @ts-ignore
 @NgModule({
@@ -51,6 +52,7 @@ import { CurrentCashComponent } from './current-cash/current-cash/current-cash.c
     FluxDeltaQuartersComponent,
     RefluxMonthComponent,
     CurrentCashComponent,
+    FluxAddComponent,
   ],
   imports: [
     BrowserModule,
