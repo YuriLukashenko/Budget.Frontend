@@ -100,3 +100,10 @@ export interface IFluxTypes {
   name: string,
   comment: string
 }
+
+export interface IFluxDTO {
+  ftId: number,
+  value: number,
+  date: string,
+  comment: string
+}

@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
 import {FluxService} from "../../services/api/flux/flux.service";
-import {IFluxTypes} from "../../dtos/DTOs";
+import {IFluxDTO, IFluxTypes} from "../../dtos/DTOs";
 
 @Component({
   selector: 'app-flux-add',
@@ -11,6 +11,7 @@ import {IFluxTypes} from "../../dtos/DTOs";
 export class FluxAddComponent implements OnInit {
   fluxForm: FormGroup;
   fluxTypes: IFluxTypes[] = [];
+  dataStatus: string = 'ACTIVE' //| 'PENDING' | 'FAILURE';
   constructor(private fluxService: FluxService) {
     this.fluxForm = new FormGroup({
       "type": new FormControl(""),
@@ -36,7 +37,21 @@ export class FluxAddComponent implements OnInit {
   }
 
   onSubmit(){
-    console.log(this.fluxForm);
+    this.dataStatus = 'PENDING';
+    let addFluxBody = this.mapFlux(this.fluxForm.value);
+    this.fluxService.addFlux(addFluxBody).subscribe(
+      data => {this.dataStatus = 'ACTIVE'},
+      err =>  {this.dataStatus = 'FAILURE'}
+    );
+  }
+
+  mapFlux(formGroupValue: any): IFluxDTO{
+    return {
+      ftId: formGroupValue.type.ftId,
+      value: formGroupValue.value,
+      date: formGroupValue.date,
+      comment: formGroupValue.comment,
+    };
   }
 
   formatDate(date: any) {

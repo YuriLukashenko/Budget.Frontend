@@ -5,7 +5,7 @@ import {map} from "rxjs/operators";
 import {
   IChartData,
   IColumnChartData,
-  IDeltaResponse,
+  IDeltaResponse, IFluxDTO,
   IFluxMonthProfit,
   IFluxQuarterProfit, IFluxTypes,
   IFluxYearProfit
@@ -21,6 +21,10 @@ export class FluxService {
 
   get(resource: string): Observable<any> {
     return this.api.get(serviceRoute + resource);
+  }
+
+  post(resource: string, body: any): Observable<any> {
+    return this.api.post(serviceRoute + resource, body);
   }
 
   getFluxTypes(): Observable<any>{
@@ -72,6 +76,13 @@ export class FluxService {
         map((data: IDeltaResponse[]) =>
           data.map(x => ({category: x.displayPeriod, value: x.value}) as IColumnChartData)
         )
+      );
+  }
+
+  addFlux(body: IFluxDTO): Observable<any> {
+    return this.post('add', body)
+      .pipe(
+        map((data: any) => data)
       );
   }
 }
