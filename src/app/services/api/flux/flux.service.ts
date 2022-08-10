@@ -7,7 +7,7 @@ import {
   IColumnChartData,
   IDeltaResponse,
   IFluxMonthProfit,
-  IFluxQuarterProfit,
+  IFluxQuarterProfit, IFluxTypes,
   IFluxYearProfit
 } from "../../../dtos/DTOs";
 
@@ -21,6 +21,13 @@ export class FluxService {
 
   get(resource: string): Observable<any> {
     return this.api.get(serviceRoute + resource);
+  }
+
+  getFluxTypes(): Observable<any>{
+    return this.get('types')
+      .pipe(
+        map((data: IFluxTypes[]) => data)
+      );
   }
 
   getMonthProfits(): Observable<any>{

@@ -1,17 +1,24 @@
-<div class="container flux-container">
+<div class="container flux-container" xmlns="http://www.w3.org/1999/html">
   <form [formGroup]="fluxForm" (ngSubmit)="onSubmit()">
     <div class="form-group flux-form">
       <label>Flux type: </label>
-      <input type=text class="form-control" formControlName="type" />
+      <div>
+        <select formControlName="type" class="form-control">
+          <option value="">Choose Type</option>
+          <option *ngFor="let type of fluxTypes" [ngValue]="type">
+            {{type.name}}
+          </option>
+        </select>
+      </div>
       <label>Value: </label>
       <input type=number class="form-control" formControlName="value" />
       <label>Date: </label>
       <input type=date class="form-control" formControlName="date" />
       <label>Comment: </label>
-      <input type=text class="form-control" formControlName="comment" />
+      <textarea class="form-control" formControlName="comment" rows="5"></textarea>
       <button type="submit" class="btn btn-success submit">
-        <i class="fas fa-pen mr-1"></i>
-        <span>Update</span>
+        <i class="fas fa-plus mr-1"></i>
+        <span>Add</span>
       </button>
     </div>
   </form>

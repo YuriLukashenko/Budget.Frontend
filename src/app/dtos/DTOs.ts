@@ -94,3 +94,9 @@ export interface IFopDTO {
   value: number
   type: string
 }
+
+export interface IFluxTypes {
+  ftId: number,
+  name: string,
+  comment: string
+}
