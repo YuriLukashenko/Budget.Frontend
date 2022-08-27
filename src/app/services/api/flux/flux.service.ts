@@ -70,6 +70,15 @@ export class FluxService {
     );
   }
 
+  getIndexMonthProfits(date: Date): Observable<any> {
+    return this.get('index/months/' + date.getFullYear() + '/' + (date.getMonth()+1))
+      .pipe(
+        map((data: IDeltaResponse[]) =>
+          data.map(x => ({category: x.displayPeriod, value: x.value}) as IColumnChartData)
+        )
+      );
+  }
+
   getDeltaQuarterProfits(): Observable<any> {
     return this.get('delta/quarter')
       .pipe(

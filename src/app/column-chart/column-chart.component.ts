@@ -25,7 +25,11 @@ export class ColumnChartComponent {
       this.root = am5.Root.new(this.ref);
       this.root.setThemes([am5themes_Animated.new(this.root)]);
     }
-
+    Array.from(this.root.container.children).forEach((chart:any)=>{
+      chart.series.clear();
+      chart.xAxes.clear();
+      chart.yAxes.clear();
+    });
     let chart = this.root.container.children.push(
       am5xy.XYChart.new(this.root, {
         panY: false,
@@ -62,29 +66,70 @@ export class ColumnChartComponent {
     }
 
     xAxis.data.setAll(dataMap);
-
-    let series = chart.series.push(
-      am5xy.ColumnSeries.new(this.root, {
-        name: "",
-        xAxis: xAxis,
-        yAxis: yAxis,
-        valueYField: "value",
-        categoryXField: "category",
-        tooltip: am5.Tooltip.new(this.root, {
-          pointerOrientation: "right",
-          labelText: this.context?.settings?.numberTooltipFormat
-            ? "{categoryX}: {valueY.formatNumber('"+ this.context?.settings?.numberTooltipFormat +"')}"
-            : "{categoryX}: {valueY}"
+    let series;
+    if(this.context?.settings?.seriesType === 'column' || this.context?.settings?.seriesType === undefined) {
+      series = chart.series.push(
+        am5xy.ColumnSeries.new(this.root, {
+          name: "",
+          xAxis: xAxis,
+          yAxis: yAxis,
+          valueYField: "value",
+          categoryXField: "category",
+          tooltip: am5.Tooltip.new(this.root, {
+            pointerOrientation: "right",
+            labelText: this.context?.settings?.numberTooltipFormat
+              ? "{categoryX}: {valueY.formatNumber('"+ this.context?.settings?.numberTooltipFormat +"')}"
+              : "{categoryX}: {valueY}"
+          })
         })
-      })
-    );
-
-    series.data.setAll(dataMap);
+      );
+      series.data.setAll(dataMap);
+    } else if(this.context?.settings?.seriesType === 'line'){
+      series = chart.series.push(
+        am5xy.LineSeries.new(this.root, {
+          xAxis: xAxis,
+          yAxis: yAxis,
+          valueYField: "value",
+          categoryXField: "category",
+          tooltip: am5.Tooltip.new(this.root, {
+            pointerOrientation: "right",
+            labelText: this.context?.settings?.numberTooltipFormat
+              ? "{categoryX}: {valueY.formatNumber('"+ this.context?.settings?.numberTooltipFormat +"')}"
+              : "{categoryX}: {valueY}"
+          })
+        })
+      );
+      series.strokes.template.setAll({
+        strokeWidth: 4
+      });
+      series.data.setAll(dataMap);
+    }
 
     let legend = chart.children.push(am5.Legend.new(this.root, {}));
     legend.data.setAll(chart.series.values);
 
     chart.set("cursor", am5xy.XYCursor.new(this.root, {}));
+
+    if(this.context?.settings?.HasThreshold){
+      let rangeDataItem = yAxis.makeDataItem({value: 1, endValue: 1.01});
+      let range = series.createAxisRange(rangeDataItem);
+      range.strokes.template.setAll({
+        stroke: am5.color(0xff0000),
+        strokeWidth: 5
+      });
+
+      range.fills.template.setAll({
+        fill: am5.color(0x00ff00),
+        fillOpacity: 0.8,
+        visible: true
+      });
+
+      rangeDataItem.get("axisFill").setAll({
+        fill: am5.color(0x00ff00),
+        fillOpacity: 0.7,
+        visible: true
+      });
+    }
   }
 }
 

@@ -24,8 +24,9 @@ export class MenuService {
       {routerLink: "flux/month", displayName: "Flux month"},
       {routerLink: "flux/quarters", displayName: "Flux quarters"},
       {routerLink: "flux/years", displayName: "Flux years"},
-      {routerLink: "flux/delta/months", displayName: "Flux delta months"},
-      {routerLink: "flux/delta/quarters", displayName: "Flux delta quarters"},
+      {routerLink: "flux/delta/months", displayName: "Delta months"},
+      {routerLink: "flux/delta/quarters", displayName: "Delta quarters"},
+      {routerLink: "flux/index/months", displayName: "Index period months"},
       {routerLink: "flux/add", displayName: "Add new flux"}
     ]
     return items;

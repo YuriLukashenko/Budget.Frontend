@@ -17,6 +17,7 @@ import {FluxDeltaQuartersComponent} from "./flux/flux-delta-quarters/flux-delta-
 import {RefluxMonthComponent} from "./reflux/reflux-month/reflux-month.component";
 import {CurrentCashComponent} from "./current-cash/current-cash/current-cash.component";
 import {FluxAddComponent} from "./flux/flux-add/flux-add.component";
+import {FluxIndexMonthsComponent} from "./flux/flux-index-months/flux-index-months.component";
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path: 'flux/quarters', component: FluxQuartersComponent },
   { path: 'flux/years', component: FluxYearsComponent },
   { path: 'flux/delta/months', component: FluxDeltaMonthsComponent },
+  { path: 'flux/index/months', component: FluxIndexMonthsComponent },
   { path: 'flux/delta/quarters', component: FluxDeltaQuartersComponent },
   { path: 'flux/add', component: FluxAddComponent },
   { path: 'salary/avg', component: SalaryAvgRateComponent },

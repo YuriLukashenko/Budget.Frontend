@@ -27,6 +27,7 @@ import { FluxDeltaQuartersComponent } from './flux/flux-delta-quarters/flux-delt
 import { RefluxMonthComponent } from './reflux/reflux-month/reflux-month.component';
 import { CurrentCashComponent } from './current-cash/current-cash/current-cash.component';
 import { FluxAddComponent } from './flux/flux-add/flux-add.component';
+import { FluxIndexMonthsComponent } from './flux/flux-index-months/flux-index-months.component';
 
 // @ts-ignore
 @NgModule({
@@ -53,13 +54,14 @@ import { FluxAddComponent } from './flux/flux-add/flux-add.component';
     RefluxMonthComponent,
     CurrentCashComponent,
     FluxAddComponent,
+    FluxIndexMonthsComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]

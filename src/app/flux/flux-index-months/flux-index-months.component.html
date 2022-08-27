@@ -1,0 +1,10 @@
+<div class="flux-index-months-container">
+  <div class="date-selector">
+    <select (change)="onChange(dateSelect.value)" #dateSelect [(ngModel)]="date">
+      <option *ngFor="let entity of possibleDates" [value]="entity.date">
+        {{entity.date | date: 'MMM Y'}}
+      </option>
+    </select>
+  </div>
+  <app-column-chart [context]="context"></app-column-chart>
+</div>
