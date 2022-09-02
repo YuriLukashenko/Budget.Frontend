@@ -16,6 +16,10 @@
       <input type=date class="form-control" formControlName="date" />
       <label>Comment: </label>
       <textarea class="form-control" formControlName="comment" rows="5"></textarea>
+      <div>
+        <input type="checkbox" id="auto_converting" formControlName="isAutoConverting">
+        <label for="auto_converting" class="ml-1">Auto converting</label>
+      </div>
       <button type="submit" class="btn" [ngClass]="(dataStatus==='ACTIVE')? 'btn-success' :(dataStatus==='PENDING' ? 'btn-warning' : 'btn-danger') " [disabled]="fluxForm.status !== 'VALID'">
         <i class="fas fa-plus mr-1"></i>
         <span>Add</span>

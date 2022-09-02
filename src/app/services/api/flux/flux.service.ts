@@ -10,6 +10,9 @@ import {
   IFluxQuarterProfit, IFluxTypes,
   IFluxYearProfit
 } from "../../../dtos/DTOs";
+import {SalaryService} from "../salary/salary.service";
+import {RateService} from "../rate/rate.service";
+import {FopService} from "../fop/fop.service";
 
 const serviceRoute = 'flux/';
 @Injectable({
@@ -17,7 +20,7 @@ const serviceRoute = 'flux/';
 })
 export class FluxService {
 
-  constructor(private api: ApiService) { }
+  constructor(private api: ApiService, private salary: SalaryService, private rate: RateService, private fop: FopService) { }
 
   get(resource: string): Observable<any> {
     return this.api.get(serviceRoute + resource);
@@ -89,6 +92,25 @@ export class FluxService {
   }
 
   addFlux(body: IFluxDTO): Observable<any> {
+    if(body.isAutoConverting) {
+      this.rate.getByName("usd").subscribe(
+        exRate => {
+          let usd = body.value / exRate;
+          //add 'zls'
+          this.salary.addSalaryConverting({
+            usd,
+            date: body.date,
+            exRate
+          }).subscribe();
+
+          this.fop.subtract({
+            value: usd,
+            type: 'Working'
+          }).subscribe();
+        }
+      );
+    }
+
     return this.post('add', body)
       .pipe(
         map((data: any) => data)

@@ -8,7 +8,7 @@ import {
   IColumnChartData, IDeltaResponse,
   IFluxMonthProfit,
   ISalaryBonusesByMonths,
-  ISalaryBonusesByType, ISalaryTotalByMonths, ISalaryWorkingHours
+  ISalaryBonusesByType, ISalaryConvertingDTO, ISalaryTotalByMonths, ISalaryWorkingHours
 } from "../../../dtos/DTOs";
 
 const serviceRoute = 'salary/';
@@ -21,6 +21,10 @@ export class SalaryService {
 
   get(resource: string): Observable<any> {
     return this.api.get(serviceRoute + resource);
+  }
+
+  post(resource: string, body: any): Observable<any> {
+    return this.api.post(serviceRoute + resource, body);
   }
 
   getSalaryAverageRates(): Observable<any> {
@@ -74,6 +78,13 @@ export class SalaryService {
         map((data: IDeltaResponse[]) =>
           data.map(x => ({category: x.displayPeriod, value: x.value}) as IColumnChartData)
         )
+      );
+  }
+
+  addSalaryConverting(body: ISalaryConvertingDTO): Observable<any> {
+    return this.post('converting/add', body)
+      .pipe(
+        map((data: any) => data)
       );
   }
 }

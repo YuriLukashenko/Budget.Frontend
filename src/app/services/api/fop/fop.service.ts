@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {ApiService} from "../api.service";
 import {Observable} from "rxjs";
 import {map} from "rxjs/operators";
-import {IFopDTO} from "../../../dtos/DTOs";
+import {IFopDTO, IFopSubtractDTO} from "../../../dtos/DTOs";
 const serviceRoute = 'fop/';
 
 @Injectable({
@@ -28,6 +28,13 @@ export class FopService {
 
   postAll(body: any):  Observable<any> {
     return this.post('update', body)
+      .pipe(
+        map((data: any) => data)
+      );
+  }
+
+  subtract(body: IFopSubtractDTO):  Observable<any> {
+    return this.post('subtract', body)
       .pipe(
         map((data: any) => data)
       );

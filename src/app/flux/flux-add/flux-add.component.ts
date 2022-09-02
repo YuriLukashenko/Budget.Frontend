@@ -18,6 +18,7 @@ export class FluxAddComponent implements OnInit {
       "value": new FormControl(),
       "date": new FormControl(this.formatDate(new Date())),
       "comment": new FormControl(),
+      "isAutoConverting": new FormControl(),
     });
   }
 
@@ -51,6 +52,7 @@ export class FluxAddComponent implements OnInit {
       value: formGroupValue.value,
       date: formGroupValue.date,
       comment: formGroupValue.comment,
+      isAutoConverting: formGroupValue.isAutoConverting
     };
   }
 

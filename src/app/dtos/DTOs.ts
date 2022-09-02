@@ -105,5 +105,17 @@ export interface IFluxDTO {
   ftId: number,
   value: number,
   date: string,
-  comment: string
+  comment: string,
+  isAutoConverting: boolean
+}
+
+export interface ISalaryConvertingDTO {
+  usd: number,
+  date: string,
+  exRate: number
+}
+
+export interface IFopSubtractDTO {
+  value: number,
+  type: string
 }
