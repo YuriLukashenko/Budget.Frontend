@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FluxService} from "../../services/api/flux/flux.service";
 import {FormControl} from "@angular/forms";
-import * as moment from 'moment';
-import {Moment} from "moment";
 import {MatDatepicker} from "@angular/material/datepicker";
 import {IChartData} from "../../dtos/DTOs";
 

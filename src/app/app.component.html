@@ -23,6 +23,9 @@
       <li class="nav-item" *ngIf="isLoggedIn">
         <app-dropdown [name]="'Current cash'" [items]="currentCashItems"></app-dropdown>
       </li>
+      <li class="nav-item" *ngIf="isLoggedIn">
+        <a href="/sandbox" class="nav-link" routerLink="/sandbox">Sandbox</a>
+      </li>
     </ul>
     <ul class="navbar-nav" *ngIf="!isLoggedIn">
 <!--      <li class="nav-item">-->
