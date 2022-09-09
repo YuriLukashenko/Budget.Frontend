@@ -1,0 +1,25 @@
+<div class="container reflux-container" xmlns="http://www.w3.org/1999/html">
+  <form [formGroup]="refluxForm" (ngSubmit)="onSubmit()">
+    <div class="form-group reflux-form">
+      <label>Reflux type: </label>
+      <div>
+        <select formControlName="type" class="form-control">
+          <option value="">Choose Type</option>
+          <option *ngFor="let type of refluxTypes" [ngValue]="type">
+            {{type.name}}
+          </option>
+        </select>
+      </div>
+      <label>Value: </label>
+      <input type=number class="form-control" formControlName="value" />
+      <label>Date: </label>
+      <input type=date class="form-control" formControlName="date" />
+      <label>Comment: </label>
+      <textarea class="form-control" formControlName="comment" rows="5"></textarea>
+      <button type="submit" class="btn" [ngClass]="(dataStatus==='ACTIVE')? 'btn-success' :(dataStatus==='PENDING' ? 'btn-warning' : 'btn-danger') " [disabled]="refluxForm.status !== 'VALID'">
+        <i class="fas fa-plus mr-1"></i>
+        <span>Add</span>
+      </button>
+    </div>
+  </form>
+</div>

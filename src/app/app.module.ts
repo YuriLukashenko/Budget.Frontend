@@ -30,6 +30,7 @@ import { FluxAddComponent } from './flux/flux-add/flux-add.component';
 import { FluxIndexMonthsComponent } from './flux/flux-index-months/flux-index-months.component';
 import { TableComponent } from './components/table/table.component';
 import { SandboxComponent } from './sandbox/sandbox.component';
+import { RefluxAddComponent } from './reflux/reflux-add/reflux-add.component';
 
 // @ts-ignore
 @NgModule({
@@ -59,6 +60,7 @@ import { SandboxComponent } from './sandbox/sandbox.component';
     FluxIndexMonthsComponent,
     TableComponent,
     SandboxComponent,
+    RefluxAddComponent,
   ],
   imports: [
     BrowserModule,

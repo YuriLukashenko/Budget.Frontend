@@ -91,7 +91,7 @@ export class FluxService {
       );
   }
 
-  addFlux(body: IFluxDTO): Observable<any> {
+  add(body: IFluxDTO): Observable<any> {
     if(body.isAutoConverting) {
       this.rate.getByName("usd").subscribe(
         exRate => {

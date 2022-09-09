@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
 import {FluxService} from "../../services/api/flux/flux.service";
 import {IFluxDTO, IFluxTypes} from "../../dtos/DTOs";
+import {FormatService} from "../../services/format/format.service";
 
 @Component({
   selector: 'app-flux-add',
@@ -12,11 +13,11 @@ export class FluxAddComponent implements OnInit {
   fluxForm: FormGroup;
   fluxTypes: IFluxTypes[] = [];
   dataStatus: string = 'ACTIVE' //| 'PENDING' | 'FAILURE';
-  constructor(private fluxService: FluxService) {
+  constructor(private fluxService: FluxService, private formatService: FormatService) {
     this.fluxForm = new FormGroup({
       "type": new FormControl(""),
       "value": new FormControl(),
-      "date": new FormControl(this.formatDate(new Date())),
+      "date": new FormControl(formatService.formatDate(new Date())),
       "comment": new FormControl(),
       "isAutoConverting": new FormControl(),
     });
@@ -40,7 +41,7 @@ export class FluxAddComponent implements OnInit {
   onSubmit(){
     this.dataStatus = 'PENDING';
     let addFluxBody = this.mapFlux(this.fluxForm.value);
-    this.fluxService.addFlux(addFluxBody).subscribe(
+    this.fluxService.add(addFluxBody).subscribe(
       data => {this.dataStatus = 'ACTIVE'},
       err =>  {this.dataStatus = 'FAILURE'}
     );
@@ -54,15 +55,5 @@ export class FluxAddComponent implements OnInit {
       comment: formGroupValue.comment,
       isAutoConverting: formGroupValue.isAutoConverting
     };
-  }
-
-  formatDate(date: any) {
-    const d = new Date(date);
-    let month = '' + (d.getMonth() + 1);
-    let day = '' + d.getDate();
-    const year = d.getFullYear();
-    if (month.length < 2) month = '0' + month;
-    if (day.length < 2) day = '0' + day;
-    return [year, month, day].join('-');
   }
 }
