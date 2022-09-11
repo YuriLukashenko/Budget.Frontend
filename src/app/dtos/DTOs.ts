@@ -119,3 +119,9 @@ export interface IFopSubtractDTO {
   value: number,
   type: string
 }
+
+export interface IRefluxTypes {
+  rtId: number,
+  name: string,
+  comment: string
+}
