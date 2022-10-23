@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
-import {IFluxTypes, IRefluxTypes} from "../../dtos/DTOs";
+import {IFluxDTO, IFluxTypes, IRefluxDTO, IRefluxTypes} from "../../dtos/DTOs";
 import {RefluxService} from "../../services/api/reflux/reflux.service";
 import {FormatService} from "../../services/format/format.service";
 
@@ -42,6 +42,19 @@ export class RefluxAddComponent implements OnInit, AfterViewInit  {
 
   onSubmit(){
     this.dataStatus = 'PENDING';
+    let addRefluxBody = this.mapReflux(this.refluxForm.value);
+    this.refluxService.add(addRefluxBody).subscribe(
+      data => {this.dataStatus = 'ACTIVE'},
+      err =>  {this.dataStatus = 'FAILURE'}
+    );
   }
 
+  mapReflux(formGroupValue: any): IRefluxDTO {
+    return {
+      rtId: formGroupValue.type.id,
+      value: formGroupValue.value,
+      date: formGroupValue.date,
+      comment: formGroupValue.comment,
+    };
+  }
 }

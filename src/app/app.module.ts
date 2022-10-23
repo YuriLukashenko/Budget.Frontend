@@ -31,6 +31,7 @@ import { FluxIndexMonthsComponent } from './flux/flux-index-months/flux-index-mo
 import { TableComponent } from './components/table/table.component';
 import { SandboxComponent } from './sandbox/sandbox.component';
 import { RefluxAddComponent } from './reflux/reflux-add/reflux-add.component';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 // @ts-ignore
 @NgModule({
@@ -68,6 +69,7 @@ import { RefluxAddComponent } from './reflux/reflux-add/reflux-add.component';
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
+    NgSelectModule
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]

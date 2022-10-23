@@ -109,6 +109,13 @@ export interface IFluxDTO {
   isAutoConverting: boolean
 }
 
+export interface IRefluxDTO {
+  rtId: number,
+  value: number,
+  date: string,
+  comment: string,
+}
+
 export interface ISalaryConvertingDTO {
   usd: number,
   date: string,

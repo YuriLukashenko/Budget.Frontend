@@ -1,15 +1,12 @@
 <div class="container reflux-container" xmlns="http://www.w3.org/1999/html">
   <form [formGroup]="refluxForm" (ngSubmit)="onSubmit()">
     <div class="form-group reflux-form">
-      <label>Reflux type: </label>
-      <div>
-        <select formControlName="type" class="form-control">
-          <option value="">Choose Type</option>
-          <option *ngFor="let type of refluxTypes" [ngValue]="type">
-            {{type.name}}
-          </option>
-        </select>
-      </div>
+      <ng-select [items]="refluxTypes"
+                 bindLabel="name"
+                 placeholder="Reflux type"
+                 formControlName="type">
+      </ng-select>
+
       <label>Value: </label>
       <input type=number class="form-control" formControlName="value" />
       <label>Date: </label>
