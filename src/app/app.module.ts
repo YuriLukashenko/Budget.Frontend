@@ -32,6 +32,7 @@ import { TableComponent } from './components/table/table.component';
 import { SandboxComponent } from './sandbox/sandbox.component';
 import { RefluxAddComponent } from './reflux/reflux-add/reflux-add.component';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { TotalValuesComponent } from './total-values/total-values.component';
 
 // @ts-ignore
 @NgModule({
@@ -62,6 +63,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
     TableComponent,
     SandboxComponent,
     RefluxAddComponent,
+    TotalValuesComponent,
   ],
   imports: [
     BrowserModule,

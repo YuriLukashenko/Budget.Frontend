@@ -20,6 +20,7 @@ import {FluxAddComponent} from "./flux/flux-add/flux-add.component";
 import {FluxIndexMonthsComponent} from "./flux/flux-index-months/flux-index-months.component";
 import {SandboxComponent} from "./sandbox/sandbox.component";
 import {RefluxAddComponent} from "./reflux/reflux-add/reflux-add.component";
+import {TotalValuesComponent} from "./total-values/total-values.component";
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -40,6 +41,7 @@ const routes: Routes = [
   { path: 'reflux/month', component: RefluxMonthComponent },
   { path: 'reflux/add', component: RefluxAddComponent },
   { path: 'currentCash', component: CurrentCashComponent },
+  { path: 'total/values', component: TotalValuesComponent },
   { path: 'sandbox', component: SandboxComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];

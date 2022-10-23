@@ -46,4 +46,11 @@ export class MenuService {
     ]
     return items;
   }
+
+  getTotalValuesItems(): IMenuItem[] {
+    let items: IMenuItem[] = [
+      {routerLink: "total/values", displayName: "Show total values"}
+    ]
+    return items;
+  }
 }

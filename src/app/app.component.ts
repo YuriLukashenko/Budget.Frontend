@@ -17,6 +17,7 @@ export class AppComponent implements OnInit {
   fluxItems: IMenuItem[] | undefined;
   refluxItems: IMenuItem[] | undefined;
   currentCashItems: IMenuItem[] | undefined;
+  totalValuesItems: IMenuItem[] | undefined;
   currentCashDisplayValue: string = "";
   totalValuesDisplayValue: string = "";
 
@@ -37,6 +38,7 @@ export class AppComponent implements OnInit {
     this.fluxItems = this.menuService.getFluxMenuItems();
     this.refluxItems = this.menuService.getRefluxMenuItems();
     this.currentCashItems = this.menuService.getCurrentCashMenuItems();
+    this.totalValuesItems = this.menuService.getTotalValuesItems();
 
     this.currentCashService.getAll().subscribe(
       data => {this.currentCashDisplayValue = Math.floor(data).toString();},
