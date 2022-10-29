@@ -1,4 +1,12 @@
 .total-values-container{
   background: white;
   padding: 10px;
+  height: 90vh;
+  display: grid;
+  grid-template-rows: auto 1fr;
+}
+
+.grd{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }

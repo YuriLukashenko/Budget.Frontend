@@ -33,6 +33,9 @@ import { SandboxComponent } from './sandbox/sandbox.component';
 import { RefluxAddComponent } from './reflux/reflux-add/reflux-add.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { TotalValuesComponent } from './total-values/total-values.component';
+import { TotalValuesHeaderComponent } from './total-values/total-values-header/total-values-header.component';
+import { TotalValuesPieComponent } from './total-values/total-values-pie/total-values-pie.component';
+import { TotalValuesStatisticComponent } from './total-values/total-values-statistic/total-values-statistic.component';
 
 // @ts-ignore
 @NgModule({
@@ -64,6 +67,9 @@ import { TotalValuesComponent } from './total-values/total-values.component';
     SandboxComponent,
     RefluxAddComponent,
     TotalValuesComponent,
+    TotalValuesHeaderComponent,
+    TotalValuesPieComponent,
+    TotalValuesStatisticComponent,
   ],
   imports: [
     BrowserModule,
