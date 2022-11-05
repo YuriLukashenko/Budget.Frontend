@@ -20,4 +20,23 @@ export class TotalValuesService {
         map((data: number) => data)
       );
   }
+
+  getPercents() {
+    return [{
+      currencyType: "uah",
+      percent: 66.40
+    },{
+      currencyType: "usd",
+      percent: 13.40
+    },{
+      currencyType: "eur",
+      percent: 2.71
+    },{
+      currencyType: "pln",
+      percent: 4.09
+    },{
+      currencyType: "fop",
+      percent: 13.40
+    }]
+  };
 }

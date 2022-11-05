@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {TotalValuesService} from "../../services/api/total-values/total-values.service";
 
 @Component({
   selector: 'app-total-values-pie',
@@ -6,10 +7,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./total-values-pie.component.css']
 })
 export class TotalValuesPieComponent implements OnInit {
-
-  constructor() { }
+  context: any;
+  constructor(private totalValuesService: TotalValuesService) { }
 
   ngOnInit(): void {
+    this.setContext();
   }
 
+  setContext(){
+    this.context = {
+      data: this.totalValuesService.getPercents(),
+      settings: {
+        isLegend: false,
+        categoryField: "currencyType",
+        valueField: "percent"
+      }
+    }
+  }
 }

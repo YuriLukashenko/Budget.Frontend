@@ -1,3 +1,26 @@
 .entire{
   background: white;
+  margin-bottom: 20px;
+}
+
+.even-columns {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.item {
+  margin: 0.5rem 0;
+  padding: 0 0.5rem 0 0;
+}
+
+.metric-header-text{
+  color: gray;
+}
+
+.green{
+  color: green;
 }

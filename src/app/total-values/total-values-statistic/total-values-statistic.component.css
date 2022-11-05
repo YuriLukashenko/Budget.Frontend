@@ -1,4 +1,13 @@
 .entire{
-  background: yellow;
+  background: white;
   height: 100%;
+}
+
+.metric-header-text{
+  color: gray;
+}
+
+.metric-value{
+  color: black;
+  font-weight: 500;
 }
