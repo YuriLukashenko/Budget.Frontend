@@ -37,6 +37,8 @@ import { TotalValuesHeaderComponent } from './total-values/total-values-header/t
 import { TotalValuesPieComponent } from './total-values/total-values-pie/total-values-pie.component';
 import { TotalValuesStatisticComponent } from './total-values/total-values-statistic/total-values-statistic.component';
 import { PieComponent } from './pie/pie.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // @ts-ignore
 @NgModule({
@@ -75,11 +77,13 @@ import { PieComponent } from './pie/pie.component';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    NgSelectModule
+    NgSelectModule,
+    NgxSpinnerModule
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]

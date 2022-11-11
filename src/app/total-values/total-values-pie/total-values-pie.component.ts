@@ -15,13 +15,20 @@ export class TotalValuesPieComponent implements OnInit {
   }
 
   setContext(){
-    this.context = {
-      data: this.totalValuesService.getPercents(),
-      settings: {
-        isLegend: false,
-        categoryField: "currencyType",
-        valueField: "percent"
+    this.totalValuesService.getPercents().subscribe(
+      data => {
+         this.context = {
+           data,
+           settings: {
+             isLegend: false,
+             categoryField: "currencyType",
+             valueField: "percent"
+           }
+         }
+      },
+      err => {
+        console.log(err.error.message);
       }
-    }
+    );
   }
 }

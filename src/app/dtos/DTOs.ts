@@ -132,3 +132,8 @@ export interface IRefluxTypes {
   name: string,
   comment: string
 }
+
+export interface ITotalValuesPercent {
+  currencyType: string,
+  percent: number
+}
