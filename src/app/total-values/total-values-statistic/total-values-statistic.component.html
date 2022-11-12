@@ -15,14 +15,14 @@
             <div>Obligation:</div>
           </div>
           <div class="d-flex flex-column ml-3">
-            <div class="metric-value">41020</div>
-            <div class="metric-value">80</div>
-            <div class="metric-value">0</div>
-            <div class="metric-value">18173</div>
-            <div class="metric-value">14000</div>
-            <div class="metric-value">0</div>
-            <div class="metric-value">80000</div>
-            <div class="metric-value">39414</div>
+            <div class="metric-value">{{show("UAH", "currentCash")}}</div>
+            <div class="metric-value">{{show("UAH", "fund")}}</div>
+            <div class="metric-value">{{show("UAH", "balance")}}</div>
+            <div class="metric-value">{{show("UAH", "credit")}}</div>
+            <div class="metric-value">{{show("UAH", "ewer")}}</div>
+            <div class="metric-value">{{show("UAH", "ewerCredit")}}</div>
+            <div class="metric-value">{{show("UAH", "deposit")}}</div>
+            <div class="metric-value">{{show("UAH", "obligation")}}</div>
           </div>
         </div>
       </div>
@@ -34,7 +34,7 @@
             <div style="visibility: hidden">Current cash:</div>
           </div>
           <div class="d-flex flex-column ml-3">
-            <div class="metric-value">1000</div>
+            <div class="metric-value">{{show("FOP", "total")}}</div>
           </div>
         </div>
       </div>
@@ -49,9 +49,9 @@
             <div>Deposit:</div>
           </div>
           <div class="d-flex flex-column ml-3">
-            <div class="metric-value">500</div>
-            <div class="metric-value">0</div>
-            <div class="metric-value">500</div>
+            <div class="metric-value">{{show("USD", "ewer")}}</div>
+            <div class="metric-value">{{show("USD", "ewerCredit")}}</div>
+            <div class="metric-value">{{show("USD", "deposit")}}</div>
           </div>
         </div>
       </div>
@@ -63,8 +63,8 @@
             <div>Ewer credit:</div>
           </div>
           <div class="d-flex flex-column ml-3">
-            <div class="metric-value">200</div>
-            <div class="metric-value">0</div>
+            <div class="metric-value">{{show("EUR", "ewer")}}</div>
+            <div class="metric-value">{{show("EUR", "ewerCredit")}}</div>
           </div>
         </div>
       </div>
@@ -76,8 +76,8 @@
             <div>Ewer credit:</div>
           </div>
           <div class="d-flex flex-column ml-3">
-            <div class="metric-value">1400</div>
-            <div class="metric-value">0</div>
+            <div class="metric-value">{{show("PLN", "ewer")}}</div>
+            <div class="metric-value">{{show("PLN", "ewerCredit")}}</div>
           </div>
         </div>
       </div>

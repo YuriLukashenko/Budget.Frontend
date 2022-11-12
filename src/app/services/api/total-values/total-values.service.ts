@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {ApiService} from "../api.service";
 import {Observable} from "rxjs";
 import {map} from "rxjs/operators";
-import {IColumnChartData, IDeltaResponse, ITotalValuesPercent, ITotalValuesSlice} from "../../../dtos/DTOs";
+import {ITotalValuesDetails, ITotalValuesPercent, ITotalValuesSlice} from "../../../dtos/DTOs";
 const serviceRoute = 'totalvalues/';
 @Injectable({
   providedIn: 'root'
@@ -30,5 +30,10 @@ export class TotalValuesService {
   getSlices(): Observable<any> {
     return this.get('slices')
       .pipe(map((data: ITotalValuesSlice[]) => data));
+  }
+
+  getDetails(): Observable<any> {
+    return this.get('details')
+      .pipe(map((data: ITotalValuesDetails[]) => data));
   }
 }

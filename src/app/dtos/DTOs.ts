@@ -143,3 +143,20 @@ export interface ITotalValuesSlice {
   value: number,
   percent: number
 }
+
+export interface ITotalValuesDetails {
+  currency: string,
+  details: IDetails
+}
+
+export interface IDetails {
+  "currentCash": number | undefined,
+  "fund": number | undefined,
+  "balance": number | undefined,
+  "credit": number | undefined,
+  "ewer": number | undefined,
+  "ewerCredit": number | undefined,
+  "deposit": number | undefined,
+  "obligation": number | undefined,
+  "total": number | undefined
+}
