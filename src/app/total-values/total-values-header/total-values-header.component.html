@@ -3,15 +3,15 @@
     <div class="col m-2">
       <div class="text-center">
         <h5 class="metric-header-text">Total</h5>
-        <h3>276220</h3>
+        <h3>{{show("Total", "value")}}</h3>
       </div>
     </div>
     <div class="col m-2">
       <div class="text-center">
         <h5 class="metric-header-text">Available</h5>
         <div class="d-flex flex-row justify-content-center align-items-center">
-          <h3>152327</h3>
-          <h4 class="ml-1">(55,15%)</h4>
+          <h3>{{show("Available", "value")}}</h3>
+          <h4 class="ml-1">({{show("Available", "percent")}}%)</h4>
         </div>
       </div>
     </div>
@@ -21,8 +21,8 @@
       <div class="card text-center">
         <h5 class="metric-header-text">UAH</h5>
         <div class="d-flex flex-row justify-content-center">
-          <h5 class="green">184220</h5>
-          <div class="ml-1">(66,75%)</div>
+          <h5 class="green">{{show("UAH", "value")}}</h5>
+          <div class="ml-1">({{show("UAH", "percent")}}%)</div>
         </div>
       </div>
     </div>
@@ -30,8 +30,8 @@
       <div class="card text-center">
         <h5 class="metric-header-text">USD</h5>
         <div class="d-flex flex-row justify-content-center">
-          <h5>36650</h5>
-          <div class="ml-1">(13,27%)</div>
+          <h5>{{show("USD", "value")}}</h5>
+          <div class="ml-1">({{show("USD", "percent")}}%)</div>
         </div>
       </div>
     </div>
@@ -39,8 +39,8 @@
       <div class="card text-center">
         <h5 class="metric-header-text">EUR</h5>
         <div class="d-flex flex-row justify-content-center">
-          <h5>7400</h5>
-          <div class="ml-1">(2,68%)</div>
+          <h5>{{show("EUR", "value")}}</h5>
+          <div class="ml-1">({{show("EUR", "percent")}}%)</div>
         </div>
       </div>
     </div>
@@ -48,8 +48,8 @@
       <div class="card text-center">
         <h5 class="metric-header-text">PLN</h5>
         <div class="d-flex flex-row justify-content-center">
-          <h5>11200</h5>
-          <div class="ml-1">(4,05%)</div>
+          <h5>{{show("PLN", "value")}}</h5>
+          <div class="ml-1">({{show("PLN", "percent")}}%)</div>
         </div>
       </div>
     </div>
@@ -57,8 +57,8 @@
       <div class="card text-center">
         <h5 class="metric-header-text">FOP</h5>
         <div class="d-flex flex-row justify-content-center">
-          <h5>36650</h5>
-          <div class="ml-1">(13,27%)</div>
+          <h5>{{show("FOP", "value")}}</h5>
+          <div class="ml-1">({{show("FOP", "percent")}}%)</div>
         </div>
       </div>
     </div>

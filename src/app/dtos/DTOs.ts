@@ -137,3 +137,9 @@ export interface ITotalValuesPercent {
   currencyType: string,
   percent: number
 }
+
+export interface ITotalValuesSlice {
+  name: string,
+  value: number,
+  percent: number
+}
