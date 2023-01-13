@@ -39,6 +39,7 @@ import { TotalValuesStatisticComponent } from './total-values/total-values-stati
 import { PieComponent } from './pie/pie.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RateComponent } from './rate/rate.component';
 
 // @ts-ignore
 @NgModule({
@@ -74,6 +75,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     TotalValuesPieComponent,
     TotalValuesStatisticComponent,
     PieComponent,
+    RateComponent,
   ],
   imports: [
     BrowserModule,

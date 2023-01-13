@@ -28,4 +28,11 @@ export class RateService {
         map((data: number) => data)
       );
   }
+
+  getLast(): Observable<any> {
+    return this.get('last')
+      .pipe(
+        map((data: any) => data)
+      );
+  }
 }

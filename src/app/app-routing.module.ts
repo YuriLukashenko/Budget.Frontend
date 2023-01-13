@@ -21,6 +21,7 @@ import {FluxIndexMonthsComponent} from "./flux/flux-index-months/flux-index-mont
 import {SandboxComponent} from "./sandbox/sandbox.component";
 import {RefluxAddComponent} from "./reflux/reflux-add/reflux-add.component";
 import {TotalValuesComponent} from "./total-values/total-values.component";
+import {RateComponent} from "./rate/rate.component";
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -43,6 +44,7 @@ const routes: Routes = [
   { path: 'currentCash', component: CurrentCashComponent },
   { path: 'total/values', component: TotalValuesComponent },
   { path: 'sandbox', component: SandboxComponent },
+  { path: 'rate', component: RateComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];
 
