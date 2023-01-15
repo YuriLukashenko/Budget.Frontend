@@ -15,6 +15,10 @@ export class RateService {
     return this.api.get(serviceRoute + resource);
   }
 
+  post(resource: string, body: any): Observable<any> {
+    return this.api.post(serviceRoute + resource, body);
+  }
+
   getAll(): Observable<any>{
     return this.get('all')
       .pipe(
@@ -31,6 +35,13 @@ export class RateService {
 
   getLast(): Observable<any> {
     return this.get('last')
+      .pipe(
+        map((data: any) => data)
+      );
+  }
+
+  add(body: any):  Observable<any> {
+    return this.post('add', body)
       .pipe(
         map((data: any) => data)
       );

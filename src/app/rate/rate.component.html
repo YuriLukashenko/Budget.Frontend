@@ -1,10 +1,14 @@
 <div class="container rate-container">
-  <form class="rate-form" [formGroup]="rateForm">
+  <form class="rate-form" [formGroup]="rateForm" (ngSubmit)="onSubmit()">
     <label>Usd to uah: </label>
     <input type=text class="form-control" formControlName="usd" />
     <label>Eur to uah: </label>
     <input type=text class="form-control" formControlName="eur" />
     <label>Pln to uah: </label>
     <input type=text class="form-control" formControlName="pln" />
+    <button type="submit" class="btn mt-2" [ngClass]="(dataStatus==='ACTIVE')? 'btn-success' :(dataStatus==='PENDING' ? 'btn-warning' : 'btn-danger') " [disabled]="rateForm.status !== 'VALID'">
+      <i class="fas fa-pen mr-1"></i>
+      <span>Update</span>
+    </button>
   </form>
 </div>

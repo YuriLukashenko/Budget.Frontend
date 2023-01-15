@@ -160,3 +160,10 @@ export interface IDetails {
   "obligation": number | undefined,
   "total": number | undefined
 }
+
+export interface IRateDTO {
+  date: Date,
+  usd: number,
+  eur: number,
+  pln: number
+}
