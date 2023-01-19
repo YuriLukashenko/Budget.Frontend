@@ -73,6 +73,7 @@ export class CurrentCashComponent implements OnInit {
       data => {
         this.usdRate = data
         this.updateWorkingHrivnas();
+        this.realCash = this.calculateSum();
       },
       err =>  {console.log(err)}
     );
@@ -188,5 +189,27 @@ export class CurrentCashComponent implements OnInit {
     result.push({fopId: 1, type: "Working", value: formGroupValue.workingFop});
     result.push({fopId: 2, type: "Cumulative", value: formGroupValue.cumulativeFop});
     return result;
+  }
+
+  private calculateSum() {
+    if(this.cashLocationsForm.controls['cash'].value
+      && this.cashLocationsForm.controls['monoUsd'].value
+      && this.cashLocationsForm.controls['monoBlack'].value
+      && this.cashLocationsForm.controls['monoWhite'].value
+      && this.cashLocationsForm.controls['additional'].value
+      && this.cashLocationsForm.controls['monoSupport'].value
+      && this.cashLocationsForm.controls['privatPayout'].value
+      && this.cashLocationsForm.controls['privatUniversal'].value)
+    {
+      return (
+        this.cashLocationsForm.controls['privatUniversal'].value +
+        this.cashLocationsForm.controls['privatPayout'].value +
+        this.cashLocationsForm.controls['monoBlack'].value +
+        this.cashLocationsForm.controls['monoWhite'].value +
+        this.cashLocationsForm.controls['monoUsd'].value * this.usdRate +
+        this.cashLocationsForm.controls['monoSupport'].value +
+        this.cashLocationsForm.controls['cash'].value +
+        this.cashLocationsForm.controls['additional'].value);
+    }
   }
 }
