@@ -84,6 +84,14 @@ export interface IRefluxTypeDTO {
   comment: string
 }
 
+export interface IReflux {
+  rId: number
+  rtId: number
+  value: number
+  date: string
+  comment: string
+}
+
 export interface CashLocationsDTO{
   value: number;
   type: number;

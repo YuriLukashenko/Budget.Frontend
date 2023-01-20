@@ -1,0 +1,10 @@
+<div class="m-3 d-flex flex-row">
+  <input type="number" [(ngModel)]="count">
+  <button type="submit" class="ml-2 btn btn-success" (click)="onClick()">
+    <i class="fas fa-table-list mr-1"></i>
+    <span>Apply</span>
+  </button>
+</div>
+<div class="reflux-last-container">
+  <app-table [tableData]="tableData"></app-table>
+</div>

@@ -22,6 +22,7 @@ import {SandboxComponent} from "./sandbox/sandbox.component";
 import {RefluxAddComponent} from "./reflux/reflux-add/reflux-add.component";
 import {TotalValuesComponent} from "./total-values/total-values.component";
 import {RateComponent} from "./rate/rate.component";
+import {RefluxLastComponent} from "./reflux/reflux-last/reflux-last.component";
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -41,6 +42,7 @@ const routes: Routes = [
   { path: 'salary/delta/months', component: SalaryDeltaMonthsComponent },
   { path: 'reflux/month', component: RefluxMonthComponent },
   { path: 'reflux/add', component: RefluxAddComponent },
+  { path: 'reflux/last', component: RefluxLastComponent },
   { path: 'currentCash', component: CurrentCashComponent },
   { path: 'total/values', component: TotalValuesComponent },
   { path: 'sandbox', component: SandboxComponent },

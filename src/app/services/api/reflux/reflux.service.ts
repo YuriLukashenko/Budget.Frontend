@@ -2,7 +2,15 @@ import { Injectable } from '@angular/core';
 import {ApiService} from "../api.service";
 import {Observable} from "rxjs";
 import {map} from "rxjs/operators";
-import {IChartData, IFluxDTO, IFluxMonthSpend, IRefluxDTO, IRefluxTypeDTO, RefluxType} from "../../../dtos/DTOs";
+import {
+  IChartData,
+  IFluxDTO,
+  IFluxMonthSpend,
+  IReflux,
+  IRefluxDTO,
+  IRefluxTypeDTO,
+  RefluxType
+} from "../../../dtos/DTOs";
 
 const serviceRoute = 'reflux/';
 @Injectable({
@@ -46,6 +54,13 @@ export class RefluxService {
         map((data: IRefluxTypeDTO[]) =>
         data.map(x => ({id: x.rtId, name: x.name}) as RefluxType)
         )
+      );
+  }
+
+  getLastRefluxes(count: number): Observable<any>{
+    return this.get('last/' + count)
+      .pipe(
+        map((data: IReflux[]) => data as IReflux[])
       );
   }
 
