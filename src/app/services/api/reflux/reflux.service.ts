@@ -29,8 +29,8 @@ export class RefluxService {
     return this.api.post(serviceRoute + resource, body);
   }
 
-  getMonthSpends(): Observable<any>{
-    return this.get('month/spend/2022')
+  getMonthSpends(year: number): Observable<any>{
+    return this.get('month/spend/' + year.toString())
       .pipe(
         map((data: IFluxMonthSpend[]) =>
           data.map(x => ({date: x.date, value: x.monthSum}) as IChartData)
@@ -38,8 +38,8 @@ export class RefluxService {
       );
   }
 
-  getMonthSpendsByType(typeId: number): Observable<any>{
-    return this.get('month/spend/2022/' + typeId.toString())
+  getMonthSpendsByType(year:number, typeId: number): Observable<any>{
+    return this.get('month/spend/' + year.toString() + '/'  + typeId.toString())
       .pipe(
         map((data: IFluxMonthSpend[]) =>
           data.map(x => ({date: x.date, value: x.monthSum}) as IChartData)

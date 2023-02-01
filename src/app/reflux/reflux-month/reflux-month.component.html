@@ -1,7 +1,12 @@
 <div class="m-3">
-  <select style="min-width: 10%;" (change)="onSelectChange($event)">
+  <select style="min-width: 10%;" (change)="onSelectChange($event)" [(ngModel)]='typeSelected'>
     <option *ngFor="let type of refluxTypes" [value]="type.id">
       {{type.name}}
+    </option>
+  </select>
+  <select style="min-width: 10%;" class="ml-2" (change)="onYearSelectChange($event)" [(ngModel)]='yearSelected'>
+    <option *ngFor="let year of years" [value]="year.id">
+      {{year.name}}
     </option>
   </select>
 </div>

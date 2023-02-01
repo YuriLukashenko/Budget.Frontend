@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {FluxService} from "../../services/api/flux/flux.service";
 import {RefluxService} from "../../services/api/reflux/reflux.service";
-import {RefluxType} from "../../dtos/DTOs";
-import {map} from "rxjs/operators";
+import {RefluxType, Year} from "../../dtos/DTOs";
 
 @Component({
   selector: 'app-reflux-month',
@@ -12,6 +10,10 @@ import {map} from "rxjs/operators";
 export class RefluxMonthComponent implements OnInit {
   context: any;
   refluxTypes: RefluxType[] = [];
+  typeSelected: number = 0;
+  years: Year[] = [];
+  yearSelected: number = 2023;
+
   constructor(private refluxService: RefluxService) { }
 
   ngOnInit(): void {
@@ -19,12 +21,13 @@ export class RefluxMonthComponent implements OnInit {
   }
 
   setContext(){
-    this.setMonthSpends();
+    this.setMonthSpends(this.yearSelected);
+    this.setYears();
     this.setTypes();
   }
 
-  setMonthSpends(){
-    this.refluxService.getMonthSpends().subscribe(
+  setMonthSpends(year: number){
+    this.refluxService.getMonthSpends(year).subscribe(
       data => {
         this.context = {
           data,
@@ -39,8 +42,20 @@ export class RefluxMonthComponent implements OnInit {
     );
   }
 
-  setMonthSpendsByType(typeId: number){
-    this.refluxService.getMonthSpendsByType(typeId).subscribe(
+  setYears(){
+    this.years = [
+      { "id": 0,    "name": "Total"},
+      { "id": 2019, "name": "2019" },
+      { "id": 2020, "name": "2020" },
+      { "id": 2021, "name": "2021" },
+      { "id": 2022, "name": "2022" },
+      { "id": 2023, "name": "2023" }
+    ]
+    this.yearSelected = 2023;
+  }
+
+  setMonthSpendsByType(year: number, typeId: number){
+    this.refluxService.getMonthSpendsByType(year, typeId).subscribe(
       data => {
         this.context = {
           data,
@@ -76,12 +91,27 @@ export class RefluxMonthComponent implements OnInit {
 
 
   onSelectChange(e: any){
-    let typeId = e.target.value;
-    if(typeId == 0){
-      this.setMonthSpends();
+    this.typeSelected = e.target.value;
+    this.loadData();
+  }
+
+  onYearSelectChange(e: any){
+    this.yearSelected = e.target.value;
+    this.loadData();
+  }
+
+  loadData(){
+    if(this.typeSelected == 0 && this.yearSelected == 0) {
+      return;
     }
-    else{
-      this.setMonthSpendsByType(typeId);
+    if(this.yearSelected == 0){
+      return;
     }
+    if(this.typeSelected == 0){
+      this.setMonthSpends(this.yearSelected);
+      return;
+    }
+    this.setMonthSpendsByType(this.yearSelected, this.typeSelected);
+    return;
   }
 }

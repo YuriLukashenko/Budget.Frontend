@@ -78,6 +78,11 @@ export interface RefluxType {
   name: string
 }
 
+export interface Year {
+  id: number,
+  name: string
+}
+
 export interface IRefluxTypeDTO {
   rtId: number
   name: string
