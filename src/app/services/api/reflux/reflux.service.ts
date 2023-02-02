@@ -8,7 +8,7 @@ import {
   IFluxMonthSpend,
   IReflux,
   IRefluxDTO,
-  IRefluxTypeDTO,
+  IRefluxTypeDTO, IRefluxYearSpend,
   RefluxType
 } from "../../../dtos/DTOs";
 
@@ -43,6 +43,24 @@ export class RefluxService {
       .pipe(
         map((data: IFluxMonthSpend[]) =>
           data.map(x => ({date: x.date, value: x.monthSum}) as IChartData)
+        )
+      );
+  }
+
+  getYearSpends(): Observable<any>{
+    return this.get('year/spend/')
+      .pipe(
+        map((data: IRefluxYearSpend[]) =>
+          data.map(x => ({date: x.date, value: x.yearSum}) as IChartData)
+        )
+      );
+  }
+
+  getYearSpendsByType(type: number): Observable<any>{
+    return this.get('year/spend/' + type.toString())
+      .pipe(
+        map((data: IRefluxYearSpend[]) =>
+          data.map(x => ({date: x.date, value: x.yearSum}) as IChartData)
         )
       );
   }

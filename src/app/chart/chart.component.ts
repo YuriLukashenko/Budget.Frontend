@@ -74,7 +74,7 @@ export class ChartComponent {
     // Create X-Axis
     let xAxis = chart.xAxes.push(
       am5xy.DateAxis.new(this.root, {
-        baseInterval: { timeUnit: "month", count: 1 },
+        baseInterval: { timeUnit: this.context?.settings?.bin ?? "month", count: 1 },
         renderer: am5xy.AxisRendererX.new(this.root, {}),
       })
     );

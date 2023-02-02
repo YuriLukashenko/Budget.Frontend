@@ -16,6 +16,11 @@ export interface IFluxMonthSpend {
   monthSum: number
 }
 
+export interface IRefluxYearSpend {
+  date: Date,
+  yearSum: number
+}
+
 export interface IFluxQuarterProfit {
   date: Date,
   quarterSum: number

@@ -70,6 +70,40 @@ export class RefluxMonthComponent implements OnInit {
     );
   }
 
+  setYearSpends(){
+    this.refluxService.getYearSpends().subscribe(
+      data => {
+        this.context = {
+          data,
+          settings: {
+            seriesType: 'column',
+            bin: 'year'
+          }
+        };
+      },
+      err => {
+        this.context = JSON.parse(err.error).message;
+      }
+    );
+  }
+
+  setYearSpendsByType(type: number){
+    this.refluxService.getYearSpendsByType(type).subscribe(
+      data => {
+        this.context = {
+          data,
+          settings: {
+            seriesType: 'column',
+            bin: 'year'
+          }
+        };
+      },
+      err => {
+        this.context = JSON.parse(err.error).message;
+      }
+    );
+  }
+
 
   setTypes(){
     this.refluxService.getRefluxTypes().subscribe(
@@ -102,9 +136,11 @@ export class RefluxMonthComponent implements OnInit {
 
   loadData(){
     if(this.typeSelected == 0 && this.yearSelected == 0) {
+      this.setYearSpends();
       return;
     }
     if(this.yearSelected == 0){
+      this.setYearSpendsByType(this.typeSelected);
       return;
     }
     if(this.typeSelected == 0){
