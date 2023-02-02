@@ -13,6 +13,8 @@ export class RefluxMonthComponent implements OnInit {
   typeSelected: number = 0;
   years: Year[] = [];
   yearSelected: number = 2023;
+  chartTypes: string[] = [];
+  chartTypeSelected: string = "column";
 
   constructor(private refluxService: RefluxService) { }
 
@@ -24,6 +26,7 @@ export class RefluxMonthComponent implements OnInit {
     this.setMonthSpends(this.yearSelected);
     this.setYears();
     this.setTypes();
+    this.setChartTypes();
   }
 
   setYears(){
@@ -39,13 +42,18 @@ export class RefluxMonthComponent implements OnInit {
     this.yearSelected = 2023;
   }
 
+  setChartTypes(){
+    this.chartTypes = ["column", "line"]
+    this.chartTypeSelected = "column";
+  }
+
   setMonthSpends(year: number){
     this.refluxService.getMonthSpends(year).subscribe(
       data => {
         this.context = {
           data,
           settings: {
-            seriesType: 'column'
+            seriesType: this.chartTypeSelected ?? 'column'
           }
         };
       },
@@ -61,7 +69,7 @@ export class RefluxMonthComponent implements OnInit {
         this.context = {
           data,
           settings: {
-            seriesType: 'column'
+            seriesType: this.chartTypeSelected ?? 'column'
           }
         };
       },
@@ -77,7 +85,7 @@ export class RefluxMonthComponent implements OnInit {
         this.context = {
           data,
           settings: {
-            seriesType: 'line'
+            seriesType: this.chartTypeSelected ?? 'line'
           }
         };
       },
@@ -93,7 +101,7 @@ export class RefluxMonthComponent implements OnInit {
         this.context = {
           data,
           settings: {
-            seriesType: 'column'
+            seriesType: this.chartTypeSelected ?? 'column'
           }
         };
       },
@@ -109,7 +117,7 @@ export class RefluxMonthComponent implements OnInit {
         this.context = {
           data,
           settings: {
-            seriesType: 'column',
+            seriesType: this.chartTypeSelected ?? 'column',
             bin: 'year'
           }
         };
@@ -126,7 +134,7 @@ export class RefluxMonthComponent implements OnInit {
         this.context = {
           data,
           settings: {
-            seriesType: 'column',
+            seriesType: this.chartTypeSelected ?? 'column',
             bin: 'year'
           }
         };
@@ -164,6 +172,11 @@ export class RefluxMonthComponent implements OnInit {
 
   onYearSelectChange(e: any){
     this.yearSelected = e.target.value;
+    this.loadData();
+  }
+
+  onChartSelectChange(e: any){
+    this.chartTypeSelected = e.target.value;
     this.loadData();
   }
 

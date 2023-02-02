@@ -9,6 +9,11 @@
       {{year.name}}
     </option>
   </select>
+  <select style="min-width: 10%;" class="ml-2" (change)="onChartSelectChange($event)" [(ngModel)]='chartTypeSelected'>
+    <option *ngFor="let type of chartTypes" [value]="type">
+      {{type}}
+    </option>
+  </select>
 </div>
 <div class="reflux-month-container">
   <app-chart [context]="context"></app-chart>
