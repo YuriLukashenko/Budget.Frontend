@@ -47,6 +47,24 @@ export class RefluxService {
       );
   }
 
+  getMonthSpendsTotal(): Observable<any>{
+    return this.get('month/spend/')
+      .pipe(
+        map((data: IFluxMonthSpend[]) =>
+          data.map(x => ({date: x.date, value: x.monthSum}) as IChartData)
+        )
+      );
+  }
+
+  getMonthSpendsTotalByType(typeId: number): Observable<any>{
+    return this.get('month/spend/type/'  + typeId.toString())
+      .pipe(
+        map((data: IFluxMonthSpend[]) =>
+          data.map(x => ({date: x.date, value: x.monthSum}) as IChartData)
+        )
+      );
+  }
+
   getYearSpends(): Observable<any>{
     return this.get('year/spend/')
       .pipe(
@@ -57,14 +75,13 @@ export class RefluxService {
   }
 
   getYearSpendsByType(type: number): Observable<any>{
-    return this.get('year/spend/' + type.toString())
+    return this.get('year/spend/type/' + type.toString())
       .pipe(
         map((data: IRefluxYearSpend[]) =>
           data.map(x => ({date: x.date, value: x.yearSum}) as IChartData)
         )
       );
   }
-
 
   getRefluxTypes(): Observable<any>{
     return this.get('types/2022')

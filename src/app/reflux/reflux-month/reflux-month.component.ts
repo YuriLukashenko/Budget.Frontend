@@ -26,6 +26,19 @@ export class RefluxMonthComponent implements OnInit {
     this.setTypes();
   }
 
+  setYears(){
+    this.years = [
+      { "id": 0,    "name": "Total by years"},
+      { "id": -1,   "name": "Total by months"},
+      { "id": 2019, "name": "2019" },
+      { "id": 2020, "name": "2020" },
+      { "id": 2021, "name": "2021" },
+      { "id": 2022, "name": "2022" },
+      { "id": 2023, "name": "2023" }
+    ]
+    this.yearSelected = 2023;
+  }
+
   setMonthSpends(year: number){
     this.refluxService.getMonthSpends(year).subscribe(
       data => {
@@ -42,20 +55,40 @@ export class RefluxMonthComponent implements OnInit {
     );
   }
 
-  setYears(){
-    this.years = [
-      { "id": 0,    "name": "Total"},
-      { "id": 2019, "name": "2019" },
-      { "id": 2020, "name": "2020" },
-      { "id": 2021, "name": "2021" },
-      { "id": 2022, "name": "2022" },
-      { "id": 2023, "name": "2023" }
-    ]
-    this.yearSelected = 2023;
-  }
-
   setMonthSpendsByType(year: number, typeId: number){
     this.refluxService.getMonthSpendsByType(year, typeId).subscribe(
+      data => {
+        this.context = {
+          data,
+          settings: {
+            seriesType: 'column'
+          }
+        };
+      },
+      err => {
+        this.context = JSON.parse(err.error).message;
+      }
+    );
+  }
+
+  setMonthSpendsTotal(){
+    this.refluxService.getMonthSpendsTotal().subscribe(
+      data => {
+        this.context = {
+          data,
+          settings: {
+            seriesType: 'line'
+          }
+        };
+      },
+      err => {
+        this.context = JSON.parse(err.error).message;
+      }
+    );
+  }
+
+  setMonthSpendsTotalByType(typeId: number){
+    this.refluxService.getMonthSpendsTotalByType(typeId).subscribe(
       data => {
         this.context = {
           data,
@@ -139,8 +172,16 @@ export class RefluxMonthComponent implements OnInit {
       this.setYearSpends();
       return;
     }
+    if(this.typeSelected == 0 && this.yearSelected == -1){
+      this.setMonthSpendsTotal();
+      return;
+    }
     if(this.yearSelected == 0){
       this.setYearSpendsByType(this.typeSelected);
+      return;
+    }
+    if(this.yearSelected == -1){
+      this.setMonthSpendsTotalByType(this.typeSelected);
       return;
     }
     if(this.typeSelected == 0){

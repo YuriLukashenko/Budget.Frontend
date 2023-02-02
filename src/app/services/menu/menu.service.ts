@@ -34,7 +34,7 @@ export class MenuService {
 
   getRefluxMenuItems(): IMenuItem[] {
     let items: IMenuItem[] = [
-      {routerLink: "reflux/month", displayName: "Reflux month"},
+      {routerLink: "reflux/month", displayName: "Reflux dashboard"},
       {routerLink: "reflux/last", displayName: "Show last reflux"},
       {routerLink: "reflux/add", displayName: "Add new reflux"},
     ]
