@@ -5,6 +5,7 @@ import * as am5 from '@amcharts/amcharts5';
 import * as am5xy from '@amcharts/amcharts5/xy';
 import am5themes_Animated from '@amcharts/amcharts5/themes/Animated';
 import {IChartData} from "../dtos/DTOs";
+import {FormatService} from "../services/format/format.service";
 
 @Component({
   selector: 'app-chart',
@@ -18,7 +19,7 @@ export class ChartComponent {
   private root: any = am5.Root;
 
   // @ts-ignore
-  constructor(@Inject(PLATFORM_ID) private platformId, private zone: NgZone, public datepipe: DatePipe) {
+  constructor(@Inject(PLATFORM_ID) private platformId, private zone: NgZone, public datepipe: DatePipe, private formatService: FormatService) {
   }
 
   // Run the function only in the browser
@@ -100,7 +101,7 @@ export class ChartComponent {
       });
       series.data.setAll(dataMap);
       //series.set("fill", am5.color(0x67B7DC));
-      series.set("fill", am5.color(0xCCFE3C));
+      series.set("fill", am5.color(this.formatService.getSecondaryColor()));
     } else if (this.context?.settings?.seriesType === 'column'){
       let series = chart.series.push(
         am5xy.ColumnSeries.new(this.root, {
@@ -115,7 +116,7 @@ export class ChartComponent {
         })
       );
       series.data.setAll(dataMap);
-      series.set("fill", am5.color(0x67B7DC));
+      series.set("fill", am5.color(this.formatService.getPrimaryColor()));
       //series.set("fill", am5.color(0xCCFE3C));
       //series.set("fill", am5.color(0xFE78F1));
     }

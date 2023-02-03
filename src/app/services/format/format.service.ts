@@ -16,4 +16,11 @@ export class FormatService {
     if (day.length < 2) day = '0' + day;
     return [year, month, day].join('-');
   }
+
+  getPrimaryColor(){
+    return 0x67B7DC;
+  }
+  getSecondaryColor(){
+    return 0xCCFE3C;
+  }
 }

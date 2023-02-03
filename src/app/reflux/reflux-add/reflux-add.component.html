@@ -13,7 +13,7 @@
       <input type=date class="form-control" formControlName="date" />
       <label>Comment: </label>
       <textarea class="form-control" formControlName="comment" rows="5"></textarea>
-      <button type="submit" class="btn" [ngClass]="(dataStatus==='ACTIVE')? 'btn-success' :(dataStatus==='PENDING' ? 'btn-warning' : 'btn-danger') " [disabled]="refluxForm.status !== 'VALID'">
+      <button type="submit" class="btn mt-1" [ngClass]="(dataStatus==='ACTIVE')? 'btn-success' :(dataStatus==='PENDING' ? 'btn-warning' : 'btn-danger') " [disabled]="refluxForm.status !== 'VALID'">
         <i class="fas fa-plus mr-1"></i>
         <span>Add</span>
       </button>

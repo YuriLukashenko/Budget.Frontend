@@ -2,6 +2,7 @@ import {Component, Input, OnInit, SimpleChanges} from '@angular/core';
 import * as am5 from "@amcharts/amcharts5";
 import * as am5xy from "@amcharts/amcharts5/xy";
 import am5themes_Animated from "@amcharts/amcharts5/themes/Animated";
+import {FormatService} from "../services/format/format.service";
 
 @Component({
   selector: 'app-column-chart',
@@ -13,7 +14,7 @@ export class ColumnChartComponent {
   @Input() context: any;
   @Input() ref: string | undefined;
 
-  constructor() { }
+  constructor(private formatService: FormatService) { }
 
   ngOnChanges(changes: SimpleChanges) {
     this.createChart();
@@ -119,13 +120,13 @@ export class ColumnChartComponent {
       });
 
       range.fills.template.setAll({
-        fill: am5.color(0x00ff00),
+        fill: am5.color(this.formatService.getSecondaryColor()),
         fillOpacity: 0.8,
         visible: true
       });
 
       rangeDataItem.get("axisFill").setAll({
-        fill: am5.color(0x00ff00),
+        fill: am5.color(this.formatService.getSecondaryColor()),
         fillOpacity: 0.7,
         visible: true
       });
