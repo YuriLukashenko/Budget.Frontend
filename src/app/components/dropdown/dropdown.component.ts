@@ -8,6 +8,7 @@ import {IChartData, IMenuItem} from "../../dtos/DTOs";
 })
 export class DropdownComponent implements OnInit {
   @Input() name: string = "";
+  @Input() icon: string = "";
   @Input() items: IMenuItem[]| undefined;
   constructor() { }
 

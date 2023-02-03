@@ -6,22 +6,33 @@
   <nav class="navbar navbar-expand navbar-dark bg-dark">
     <ul class="navbar-nav mr-auto" routerLinkActive="active">
       <li class="nav-item" *ngIf="isLoggedIn">
-        <app-dropdown [name]="'Flux'" [items]="fluxItems"></app-dropdown>
+        <app-dropdown [name]="'Flux'" [icon]="'fa-arrow-up'" [items]="fluxItems"></app-dropdown>
       </li>
       <li class="nav-item" *ngIf="isLoggedIn">
-        <app-dropdown [name]="'Reflux'" [items]="refluxItems"></app-dropdown>
+        <app-dropdown [name]="'Reflux'" [icon]="'fa-arrow-down'" [items]="refluxItems"></app-dropdown>
       </li>
       <li class="nav-item" *ngIf="isLoggedIn">
-        <app-dropdown [name]="'Salary'" [items]="salaryItems"></app-dropdown>
+        <app-dropdown [name]="'Salary'" [icon]="'fa-dollar-sign'" [items]="salaryItems"></app-dropdown>
       </li>
       <li class="nav-item" *ngIf="isLoggedIn">
-        <app-dropdown [name]="'Current cash'" [items]="currentCashItems"></app-dropdown>
+        <!--<app-dropdown [name]="'Current cash'" [items]="currentCashItems"></app-dropdown>-->
+        <a href="/currentCash" class="nav-link" routerLink="/currentCash">
+          <i class="fa-solid fa-coins"></i>
+          Current cash
+        </a>
       </li>
       <li class="nav-item" *ngIf="isLoggedIn">
-        <app-dropdown [name]="'Total values'" [items]="totalValuesItems"></app-dropdown>
+        <!--<app-dropdown [name]="'Total values'" [items]="totalValuesItems"></app-dropdown>-->
+        <a href="/total/values" class="nav-link" routerLink="/total/values">
+          <i class="fa-solid fa-sack-dollar"></i>
+          Total values
+        </a>
       </li>
       <li class="nav-item" *ngIf="isLoggedIn">
-        <a href="/rate" class="nav-link" routerLink="/rate">Rate</a>
+        <a href="/rate" class="nav-link" routerLink="/rate">
+          <i class="fa-solid fa-arrows-rotate"></i>
+          Rate
+        </a>
       </li>
     </ul>
     <ul class="navbar-nav" *ngIf="!isLoggedIn">
@@ -29,7 +40,10 @@
 <!--        <a href="/register" class="nav-link" routerLink="register">Sign Up</a>-->
 <!--      </li>-->
       <li class="nav-item">
-        <a href="/login" class="nav-link" routerLink="login">Login</a>
+        <a href="/login" class="nav-link" routerLink="login">
+          <i class="fa-solid fa-right-to-bracket"></i>
+          Login
+        </a>
       </li>
     </ul>
 
@@ -41,10 +55,16 @@
         <a class="circle-a nav-link">{{totalValuesDisplayValue}}</a>
       </div>
       <li class="nav-item">
-        <a href="/profile" class="nav-link" routerLink="profile">{{ username }}</a>
+        <a href="/profile" class="nav-link" routerLink="profile">
+          <i class="fa-solid fa-user"></i>
+          {{ username }}
+        </a>
       </li>
       <li class="nav-item">
-        <a href class="nav-link" (click)="logout()">LogOut</a>
+        <a href class="nav-link" (click)="logout()">
+          <i class="fa-solid fa-right-from-bracket"></i>
+          LogOut
+        </a>
       </li>
     </ul>
   </nav>

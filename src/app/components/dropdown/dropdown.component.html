@@ -1,5 +1,8 @@
 <div class="dropdown">
-  <button class="dropbtn">{{name}}</button>
+  <button class="dropbtn">
+    <i class="fas {{icon}}"></i>
+    {{name}}
+  </button>
   <div class="dropdown-content">
     <div *ngFor="let item of items">
       <a href="/user" routerLink={{item.routerLink}}>{{item.displayName}}</a>
