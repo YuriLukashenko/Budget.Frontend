@@ -99,6 +99,8 @@ export class ChartComponent {
         strokeWidth: 4
       });
       series.data.setAll(dataMap);
+      //series.set("fill", am5.color(0x67B7DC));
+      series.set("fill", am5.color(0xCCFE3C));
     } else if (this.context?.settings?.seriesType === 'column'){
       let series = chart.series.push(
         am5xy.ColumnSeries.new(this.root, {
@@ -113,6 +115,9 @@ export class ChartComponent {
         })
       );
       series.data.setAll(dataMap);
+      series.set("fill", am5.color(0x67B7DC));
+      //series.set("fill", am5.color(0xCCFE3C));
+      //series.set("fill", am5.color(0xFE78F1));
     }
   }
 

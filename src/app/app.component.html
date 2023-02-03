@@ -5,12 +5,6 @@
 <div id="app">
   <nav class="navbar navbar-expand navbar-dark bg-dark">
     <ul class="navbar-nav mr-auto" routerLinkActive="active">
-      <li class="nav-item">
-        <a href="/home" class="nav-link" routerLink="home">Home </a>
-      </li>
-      <li class="nav-item">
-        <a href="/user" class="nav-link" *ngIf="isLoggedIn" routerLink="users">User</a>
-      </li>
       <li class="nav-item" *ngIf="isLoggedIn">
         <app-dropdown [name]="'Flux'" [items]="fluxItems"></app-dropdown>
       </li>
@@ -25,9 +19,6 @@
       </li>
       <li class="nav-item" *ngIf="isLoggedIn">
         <app-dropdown [name]="'Total values'" [items]="totalValuesItems"></app-dropdown>
-      </li>
-      <li class="nav-item" *ngIf="isLoggedIn">
-        <a href="/sandbox" class="nav-link" routerLink="/sandbox">Sandbox</a>
       </li>
       <li class="nav-item" *ngIf="isLoggedIn">
         <a href="/rate" class="nav-link" routerLink="/rate">Rate</a>

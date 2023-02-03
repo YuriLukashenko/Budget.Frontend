@@ -8,8 +8,7 @@ import { ColumnChartComponent } from './column-chart/column-chart.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
-import { HomeComponent } from './home/home.component';
-import {AppRoutingModule} from "./app-routing.module";
+import { AppRoutingModule } from "./app-routing.module";
 import { UsersComponent } from './users/users.component';
 import { FluxMonthComponent } from './flux/flux-month/flux-month.component';
 import { SalaryAvgRateComponent } from './salary/salary-avg-rate/salary-avg-rate.component';
@@ -49,7 +48,6 @@ import { RefluxLastComponent } from './reflux/reflux-last/reflux-last.component'
     ChartComponent,
     ColumnChartComponent,
     LoginComponent,
-    HomeComponent,
     UsersComponent,
     FluxMonthComponent,
     SalaryAvgRateComponent,

@@ -1,9 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { LoginComponent } from './login/login.component';
-import { HomeComponent } from './home/home.component';
-import {UsersComponent} from "./users/users.component";
+import {LoginComponent} from './login/login.component';
 import {FluxMonthComponent} from "./flux/flux-month/flux-month.component";
 import {SalaryAvgRateComponent} from "./salary/salary-avg-rate/salary-avg-rate.component";
 import {SalaryBonusesContainerComponent} from "./salary/salary-bonuses-container/salary-bonuses-container.component";
@@ -18,16 +16,13 @@ import {RefluxMonthComponent} from "./reflux/reflux-month/reflux-month.component
 import {CurrentCashComponent} from "./current-cash/current-cash/current-cash.component";
 import {FluxAddComponent} from "./flux/flux-add/flux-add.component";
 import {FluxIndexMonthsComponent} from "./flux/flux-index-months/flux-index-months.component";
-import {SandboxComponent} from "./sandbox/sandbox.component";
 import {RefluxAddComponent} from "./reflux/reflux-add/reflux-add.component";
 import {TotalValuesComponent} from "./total-values/total-values.component";
 import {RateComponent} from "./rate/rate.component";
 import {RefluxLastComponent} from "./reflux/reflux-last/reflux-last.component";
 
 const routes: Routes = [
-  { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'users', component: UsersComponent },
   { path: 'flux/month', component: FluxMonthComponent },
   { path: 'flux/quarters', component: FluxQuartersComponent },
   { path: 'flux/years', component: FluxYearsComponent },
@@ -45,9 +40,8 @@ const routes: Routes = [
   { path: 'reflux/last', component: RefluxLastComponent },
   { path: 'currentCash', component: CurrentCashComponent },
   { path: 'total/values', component: TotalValuesComponent },
-  { path: 'sandbox', component: SandboxComponent },
   { path: 'rate', component: RateComponent },
-  { path: '', redirectTo: 'home', pathMatch: 'full' }
+  { path: '', redirectTo: 'login', pathMatch: 'full' }
 ];
 
 @NgModule({
