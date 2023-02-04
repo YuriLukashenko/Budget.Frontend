@@ -12,7 +12,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   column-gap: 100px;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
 .privat{
@@ -43,25 +43,41 @@
   grid-column-end: 4;
 }
 
-.fop{
+.fop1{
   grid-row-start: 6;
   grid-row-end: 7;
   grid-column-start: 1;
   grid-column-end: 2;
 }
 
-.hrivnas{
-  margin: auto 0 auto 0;
+.fop2{
   grid-row-start: 6;
   grid-row-end: 7;
   grid-column-start: 2;
   grid-column-end: 3;
 }
 
+.hrivnas{
+  grid-row-start: 7;
+  grid-row-end: 8;
+  grid-column-start: 1;
+  grid-column-end: 2;
+}
+
 .total{
-  margin: auto 0 auto 0;
-  grid-row-start: 6;
-  grid-row-end: 7;
+  grid-row-start: 7;
+  grid-row-end: 8;
+  grid-column-start: 2;
+  grid-column-end: 3;
+}
+
+.submit{
+  grid-row-start: 7;
+  grid-row-end: 8;
   grid-column-start: 3;
   grid-column-end: 4;
+}
+
+.slot {
+  font-weight: bold;
 }

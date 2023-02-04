@@ -192,15 +192,16 @@ export class CurrentCashComponent implements OnInit {
   }
 
   private calculateSum() {
-    if(this.cashLocationsForm.controls['cash'].value
-      && this.cashLocationsForm.controls['monoUsd'].value
-      && this.cashLocationsForm.controls['monoBlack'].value
-      && this.cashLocationsForm.controls['monoWhite'].value
-      && this.cashLocationsForm.controls['additional'].value
-      && this.cashLocationsForm.controls['monoSupport'].value
-      && this.cashLocationsForm.controls['privatPayout'].value
-      && this.cashLocationsForm.controls['privatUniversal'].value)
+    if(this.cashLocationsForm.controls['cash'].value !== undefined
+      && this.cashLocationsForm.controls['monoUsd'].value !== undefined
+      && this.cashLocationsForm.controls['monoBlack'].value !== undefined
+      && this.cashLocationsForm.controls['monoWhite'].value !== undefined
+      && this.cashLocationsForm.controls['additional'].value !== undefined
+      && this.cashLocationsForm.controls['monoSupport'].value !== undefined
+      && this.cashLocationsForm.controls['privatPayout'].value !== undefined
+      && this.cashLocationsForm.controls['privatUniversal'].value !== undefined)
     {
+      console.log("sdfjskldfjlsglgdfs");
       return (
         this.cashLocationsForm.controls['privatUniversal'].value +
         this.cashLocationsForm.controls['privatPayout'].value +
