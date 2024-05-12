@@ -40,6 +40,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RateComponent } from './rate/rate.component';
 import { RefluxLastComponent } from './reflux/reflux-last/reflux-last.component';
+import { RequiredBillsCurrentComponent } from './required-bills/required-bills-current/required-bills-current.component';
+import { BillsStatusComponent } from './required-bills/required-bills-current/bills-status/bills-status.component';
 
 // @ts-ignore
 @NgModule({
@@ -76,6 +78,8 @@ import { RefluxLastComponent } from './reflux/reflux-last/reflux-last.component'
     PieComponent,
     RateComponent,
     RefluxLastComponent,
+    RequiredBillsCurrentComponent,
+    BillsStatusComponent,
   ],
   imports: [
     BrowserModule,

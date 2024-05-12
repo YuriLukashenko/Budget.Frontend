@@ -18,6 +18,7 @@ export class AppComponent implements OnInit {
   refluxItems: IMenuItem[] | undefined;
   currentCashItems: IMenuItem[] | undefined;
   totalValuesItems: IMenuItem[] | undefined;
+  requiredBills: IMenuItem[] | undefined;
   currentCashDisplayValue: string = "";
   totalValuesDisplayValue: string = "";
 
@@ -39,6 +40,7 @@ export class AppComponent implements OnInit {
     this.refluxItems = this.menuService.getRefluxMenuItems();
     this.currentCashItems = this.menuService.getCurrentCashMenuItems();
     this.totalValuesItems = this.menuService.getTotalValuesItems();
+    this.requiredBills = this.menuService.getRequiredBills();
 
     this.currentCashService.getAll().subscribe(
       data => {this.currentCashDisplayValue = Math.floor(data).toString();},

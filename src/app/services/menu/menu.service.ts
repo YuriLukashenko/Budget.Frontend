@@ -54,4 +54,11 @@ export class MenuService {
     ]
     return items;
   }
+
+  getRequiredBills(): IMenuItem[]{
+    let items: IMenuItem[] = [
+      {routerLink: "required/current", displayName: "Current required bills"}
+    ]
+    return items;
+  }
 }

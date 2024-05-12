@@ -15,6 +15,9 @@
         <app-dropdown [name]="'Salary'" [icon]="'fa-dollar-sign'" [items]="salaryItems"></app-dropdown>
       </li>
       <li class="nav-item" *ngIf="isLoggedIn">
+        <app-dropdown [name]="'Required bills'" [icon]="'fa-money-bills'" [items]="requiredBills"></app-dropdown>
+      </li>
+      <li class="nav-item" *ngIf="isLoggedIn">
         <!--<app-dropdown [name]="'Current cash'" [items]="currentCashItems"></app-dropdown>-->
         <a href="/currentCash" class="nav-link" routerLink="/currentCash">
           <i class="fa-solid fa-coins"></i>

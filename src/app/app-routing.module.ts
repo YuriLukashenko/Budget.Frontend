@@ -20,6 +20,7 @@ import {RefluxAddComponent} from "./reflux/reflux-add/reflux-add.component";
 import {TotalValuesComponent} from "./total-values/total-values.component";
 import {RateComponent} from "./rate/rate.component";
 import {RefluxLastComponent} from "./reflux/reflux-last/reflux-last.component";
+import {RequiredBillsCurrentComponent} from "./required-bills/required-bills-current/required-bills-current.component";
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -41,6 +42,7 @@ const routes: Routes = [
   { path: 'currentCash', component: CurrentCashComponent },
   { path: 'total/values', component: TotalValuesComponent },
   { path: 'rate', component: RateComponent },
+  { path: 'required/current', component: RequiredBillsCurrentComponent },
   { path: '', redirectTo: 'login', pathMatch: 'full' }
 ];
 
