@@ -1,0 +1,14 @@
+.items-container{
+  background: white;
+  padding: 10px;
+}
+
+.items-form {
+  margin-top: 20px;
+  width: 350px;
+}
+
+.submit {
+  margin: 10px 0;
+  width: 100px;
+}

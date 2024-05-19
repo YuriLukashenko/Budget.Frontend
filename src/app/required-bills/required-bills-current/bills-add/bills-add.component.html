@@ -1,0 +1,21 @@
+<div class="container items-container">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-group items-form">
+      <label>Category:</label>
+      <div>
+        <select formControlName="category" class="form-control">
+          <option value="">Choose Type</option>
+          <option *ngFor="let category of categories" [ngValue]="category">
+            {{category.name}}
+          </option>
+        </select>
+      </div>
+      <label>Value: </label>
+      <input type=number class="form-control" formControlName="value" />
+      <button type="submit" class="btn mt-2" [ngClass]="(dataStatus==='ACTIVE')? 'btn-success' :(dataStatus==='PENDING' ? 'btn-warning' : 'btn-danger') " [disabled]="form.status !== 'VALID'">
+        <i class="fas fa-plus mr-1"></i>
+        <span>Add</span>
+      </button>
+    </div>
+  </form>
+</div>

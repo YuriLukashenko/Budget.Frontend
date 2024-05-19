@@ -42,6 +42,7 @@ import { RateComponent } from './rate/rate.component';
 import { RefluxLastComponent } from './reflux/reflux-last/reflux-last.component';
 import { RequiredBillsCurrentComponent } from './required-bills/required-bills-current/required-bills-current.component';
 import { BillsStatusComponent } from './required-bills/required-bills-current/bills-status/bills-status.component';
+import { BillsAddComponent } from './required-bills/required-bills-current/bills-add/bills-add.component';
 
 // @ts-ignore
 @NgModule({
@@ -80,6 +81,7 @@ import { BillsStatusComponent } from './required-bills/required-bills-current/bi
     RefluxLastComponent,
     RequiredBillsCurrentComponent,
     BillsStatusComponent,
+    BillsAddComponent,
   ],
   imports: [
     BrowserModule,

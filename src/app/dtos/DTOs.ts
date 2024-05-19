@@ -185,3 +185,15 @@ export interface IRateDTO {
   eur: number,
   pln: number
 }
+
+export interface IReqBillsCategory {
+  id: number,
+  name: string,
+  comment: string
+}
+
+export interface IReqBillsPayedDTO {
+  categoryId: number,
+  value: number,
+  date: string
+}
