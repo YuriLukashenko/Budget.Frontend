@@ -5,7 +5,7 @@
   <span class="header">Status</span>
 </div>
 
-<div class="container" *ngFor="let item of items">
+<div class="container" *ngFor="let item of currentBills">
   <span class="category">{{ item.category }}</span>
   <span class="value">{{ item.requiredBill }}</span>
   <span class="value">{{ item.actualBill }}</span>

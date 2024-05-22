@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {Observable} from "rxjs";
 import {ApiService} from "../api.service";
 import {map} from "rxjs/operators";
-import {IFluxDTO, IFluxTypes, IReqBillsCategory, IReqBillsPayedDTO} from "../../../dtos/DTOs";
+import {IFluxDTO, IFluxTypes, IReqBillsCategory, IReqBillsCurrentDTO, IReqBillsPayedDTO} from "../../../dtos/DTOs";
 
 const serviceRoute = 'requiredbills/';
 @Injectable({
@@ -24,6 +24,13 @@ export class RequiredBillsService {
     return this.get('categories')
       .pipe(
         map((data: IReqBillsCategory[]) => data)
+      );
+  }
+
+  getCurrentBills(): Observable<any>{
+    return this.get('current')
+      .pipe(
+        map((data: IReqBillsCurrentDTO[]) => data)
       );
   }
 

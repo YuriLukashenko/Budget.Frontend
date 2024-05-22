@@ -1,11 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
-interface Item {
-  category: string;
-  requiredBill: string;
-  actualBill: string;
-  isCompleted: boolean;
-}
+import {IReqBillsCurrentDTO, IReqBillsPayedDTO} from "../../../dtos/DTOs";
+import {RequiredBillsService} from "../../../services/api/required-bills/required-bills.service";
 
 @Component({
   selector: 'app-bills-status',
@@ -13,16 +8,22 @@ interface Item {
   styleUrls: ['./bills-status.component.css']
 })
 export class BillsStatusComponent implements OnInit {
+  currentBills: IReqBillsCurrentDTO[] = [];
 
-  items: Item[] = [
-    { category: 'Category 1', requiredBill: '$100', actualBill: '$120', isCompleted: true },
-    { category: 'Category 2', requiredBill: '$2003', actualBill: '$180', isCompleted: false },
-    { category: 'Category 3', requiredBill: '$150', actualBill: '$1050', isCompleted: true }
-  ];
-
-  constructor() { }
+  constructor(private requiredBillsService: RequiredBillsService) { }
 
   ngOnInit(): void {
+    this.init();
   }
 
+  init(){
+    this.requiredBillsService.getCurrentBills().subscribe(
+      data => {
+        this.currentBills = data
+      },
+      err => {
+        this.currentBills = JSON.parse(err.error).message;
+      }
+    );
+  };
 }

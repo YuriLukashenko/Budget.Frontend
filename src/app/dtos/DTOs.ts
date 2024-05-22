@@ -197,3 +197,10 @@ export interface IReqBillsPayedDTO {
   value: number,
   date: string
 }
+
+export interface IReqBillsCurrentDTO {
+  category: string;
+  requiredBill: number;
+  actualBill: number;
+  isCompleted: boolean;
+}
