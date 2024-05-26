@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {IFluxDTO, IReqBillsCategory, IReqBillsPayedDTO} from "../../../dtos/DTOs";
-import {RequiredBillsService} from "../../../services/api/required-bills/required-bills.service";
-import {FormControl, FormGroup} from "@angular/forms";
+import { IReqBillsCategory, IReqBillsPayedDTO} from "../../../dtos/DTOs";
+import { RequiredBillsService } from "../../../services/api/required-bills/required-bills.service";
+import { FormControl, FormGroup } from "@angular/forms";
+import { RefreshService } from "../../../services/refresh/refresh.service";
 
 @Component({
   selector: 'app-bills-add',
@@ -12,7 +13,7 @@ export class BillsAddComponent implements OnInit {
   categories: IReqBillsCategory[] = [];
   form: FormGroup;
   dataStatus: string = 'ACTIVE' //| 'PENDING' | 'FAILURE';
-  constructor(private requiredBillsService: RequiredBillsService  ) {
+  constructor(private requiredBillsService: RequiredBillsService, private refreshService: RefreshService) {
     this.form = new FormGroup({
       "category": new FormControl(""),
       "value": new FormControl()
@@ -41,6 +42,7 @@ export class BillsAddComponent implements OnInit {
       data => {this.dataStatus = 'ACTIVE'},
       err =>  {this.dataStatus = 'FAILURE'}
     );
+    this.refresh();
   }
 
   map(formGroupValue: any): IReqBillsPayedDTO {
@@ -51,5 +53,9 @@ export class BillsAddComponent implements OnInit {
       categoryId: formGroupValue.category.id,
       date: startOfMonthUTC.toISOString(),
     };
+  }
+
+  refresh() {
+    this.refreshService.triggerRefresh();
   }
 }
