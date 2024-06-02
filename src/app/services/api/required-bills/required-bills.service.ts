@@ -34,6 +34,13 @@ export class RequiredBillsService {
       );
   }
 
+  getCurrentBillsTotal(): Observable<any>{
+    return this.get('total')
+      .pipe(
+        map((data: IReqBillsCurrentDTO) => data)
+      );
+  }
+
   add(body: IReqBillsPayedDTO): Observable<any> {
     return this.post('add', body)
       .pipe(

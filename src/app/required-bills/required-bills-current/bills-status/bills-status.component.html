@@ -15,4 +15,13 @@
   </span>
 </div>
 
+<div class="container mb-4 mt-2" *ngIf="totalBill.requiredBill > 0">
+  <span class="category header">{{totalBill.category}}</span>
+  <span class="header">{{ totalBill.requiredBill }}</span>
+  <span class="header">{{ totalBill.actualBill }}</span>
+  <span class="icon" [ngClass]="{ 'ok': totalBill.isCompleted, 'not-ok': !totalBill.isCompleted }">
+    {{ totalBill.isCompleted ? '&#10003;' : '&#10007;' }}
+  </span>
+</div>
+
 

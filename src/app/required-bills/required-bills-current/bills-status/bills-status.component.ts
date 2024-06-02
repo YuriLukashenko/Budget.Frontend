@@ -11,6 +11,7 @@ import {Subscription} from "rxjs";
 })
 export class BillsStatusComponent implements OnInit {
   currentBills: IReqBillsCurrentDTO[] = [];
+  totalBill: IReqBillsCurrentDTO = {} as IReqBillsCurrentDTO;
   private refreshSubscription: Subscription | undefined;
 
   constructor(private requiredBillsService: RequiredBillsService, private refreshService: RefreshService) { }
@@ -40,6 +41,15 @@ export class BillsStatusComponent implements OnInit {
       },
       err => {
         this.currentBills = JSON.parse(err.error).message;
+      }
+    );
+
+    this.requiredBillsService.getCurrentBillsTotal().subscribe(
+      data => {
+        this.totalBill = data
+      },
+      err => {
+        this.totalBill = JSON.parse(err.error).message;
       }
     );
   };
