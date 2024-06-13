@@ -4,14 +4,24 @@ import {RequiredBillsService} from "../../../services/api/required-bills/require
 import {RefreshService} from "../../../services/refresh/refresh.service";
 import {Subscription} from "rxjs";
 
+enum BillType {
+  External,
+  Internal
+}
+
 @Component({
   selector: 'app-bills-status',
   templateUrl: './bills-status.component.html',
   styleUrls: ['./bills-status.component.css']
 })
 export class BillsStatusComponent implements OnInit {
-  currentBills: IReqBillsCurrentDTO[] = [];
-  totalBill: IReqBillsCurrentDTO = {} as IReqBillsCurrentDTO;
+
+  currentBillsExternal: IReqBillsCurrentDTO[] = [];
+  currentBillsInternal: IReqBillsCurrentDTO[] = [];
+
+  totalBillExternal: IReqBillsCurrentDTO = {} as IReqBillsCurrentDTO;
+  totalBillInternal: IReqBillsCurrentDTO = {} as IReqBillsCurrentDTO;
+
   private refreshSubscription: Subscription | undefined;
 
   constructor(private requiredBillsService: RequiredBillsService, private refreshService: RefreshService) { }
@@ -35,22 +45,41 @@ export class BillsStatusComponent implements OnInit {
   }
 
   init(){
-    this.requiredBillsService.getCurrentBills().subscribe(
+    this.requiredBillsService.getCurrentBills(BillType.External).subscribe(
       data => {
-        this.currentBills = data
+        this.currentBillsExternal = data
       },
       err => {
-        this.currentBills = JSON.parse(err.error).message;
+        this.currentBillsExternal = JSON.parse(err.error).message;
       }
     );
 
-    this.requiredBillsService.getCurrentBillsTotal().subscribe(
+    this.requiredBillsService.getCurrentBills(BillType.Internal).subscribe(
       data => {
-        this.totalBill = data
+        this.currentBillsInternal = data
       },
       err => {
-        this.totalBill = JSON.parse(err.error).message;
+        this.currentBillsInternal = JSON.parse(err.error).message;
       }
     );
+
+    this.requiredBillsService.getCurrentBillsTotal(BillType.External).subscribe(
+      data => {
+        this.totalBillExternal = data
+      },
+      err => {
+        this.totalBillExternal  = JSON.parse(err.error).message;
+      }
+    );
+
+    this.requiredBillsService.getCurrentBillsTotal(BillType.Internal).subscribe(
+      data => {
+        this.totalBillInternal = data
+      },
+      err => {
+        this.totalBillInternal  = JSON.parse(err.error).message;
+      }
+    );
+
   };
 }

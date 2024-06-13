@@ -203,4 +203,5 @@ export interface IReqBillsCurrentDTO {
   requiredBill: number;
   actualBill: number;
   isCompleted: boolean;
+  type: number
 }

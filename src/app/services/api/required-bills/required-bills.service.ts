@@ -27,15 +27,15 @@ export class RequiredBillsService {
       );
   }
 
-  getCurrentBills(): Observable<any>{
-    return this.get('current')
+  getCurrentBills(type: number): Observable<any>{
+    return this.get('current/' + type.toString())
       .pipe(
         map((data: IReqBillsCurrentDTO[]) => data)
       );
   }
 
-  getCurrentBillsTotal(): Observable<any>{
-    return this.get('total')
+  getCurrentBillsTotal(type: number): Observable<any>{
+    return this.get('total/' + type.toString())
       .pipe(
         map((data: IReqBillsCurrentDTO) => data)
       );

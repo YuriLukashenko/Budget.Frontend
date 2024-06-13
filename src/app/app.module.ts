@@ -43,6 +43,7 @@ import { RefluxLastComponent } from './reflux/reflux-last/reflux-last.component'
 import { RequiredBillsCurrentComponent } from './required-bills/required-bills-current/required-bills-current.component';
 import { BillsStatusComponent } from './required-bills/required-bills-current/bills-status/bills-status.component';
 import { BillsAddComponent } from './required-bills/required-bills-current/bills-add/bills-add.component';
+import { BillCurrentComponent } from './required-bills/required-bills-current/bills-status/bill-current/bill-current.component';
 
 // @ts-ignore
 @NgModule({
@@ -82,6 +83,7 @@ import { BillsAddComponent } from './required-bills/required-bills-current/bills
     RequiredBillsCurrentComponent,
     BillsStatusComponent,
     BillsAddComponent,
+    BillCurrentComponent,
   ],
   imports: [
     BrowserModule,

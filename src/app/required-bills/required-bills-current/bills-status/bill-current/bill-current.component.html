@@ -1,0 +1,22 @@
+<div class="container m-2" *ngIf="currentBills.length > 0">
+  <h2 style="color: #28a745">{{ typeName }}</h2>
+</div>
+
+<div class="container" *ngFor="let item of currentBills">
+  <span class="category">{{ item.category }}</span>
+  <span class="value">{{ item.requiredBill }}</span>
+  <span class="value">{{ item.actualBill }}</span>
+  <span class="icon" [ngClass]="{ 'ok': item.isCompleted, 'not-ok': !item.isCompleted }">
+      <!-- You can put your OK and Not OK icons here instead of text -->
+    {{ item.isCompleted ? '&#10003;' : '&#10007;' }}
+  </span>
+</div>
+
+<div class="container mb-4 mt-2" *ngIf="totalBill.requiredBill > 0">
+  <span class="category header">{{totalBill.category}}</span>
+  <span class="header">{{ totalBill.requiredBill }}</span>
+  <span class="header">{{ totalBill.actualBill }}</span>
+  <span class="icon" [ngClass]="{ 'ok': totalBill.isCompleted, 'not-ok': !totalBill.isCompleted }">
+    {{ totalBill.isCompleted ? '&#10003;' : '&#10007;' }}
+  </span>
+</div>
