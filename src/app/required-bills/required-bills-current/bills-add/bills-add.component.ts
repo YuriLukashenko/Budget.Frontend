@@ -3,6 +3,8 @@ import { IReqBillsCategory, IReqBillsPayedDTO} from "../../../dtos/DTOs";
 import { RequiredBillsService } from "../../../services/api/required-bills/required-bills.service";
 import { FormControl, FormGroup } from "@angular/forms";
 import { RefreshService } from "../../../services/refresh/refresh.service";
+import {Subscription} from "rxjs";
+import {DateService} from "../../../services/date/date.service";
 
 @Component({
   selector: 'app-bills-add',
@@ -13,7 +15,10 @@ export class BillsAddComponent implements OnInit {
   categories: IReqBillsCategory[] = [];
   form: FormGroup;
   dataStatus: string = 'ACTIVE' //| 'PENDING' | 'FAILURE';
-  constructor(private requiredBillsService: RequiredBillsService, private refreshService: RefreshService) {
+  private refreshSubscription: Subscription | undefined;
+  constructor(private requiredBillsService: RequiredBillsService,
+              private refreshService: RefreshService,
+              private dateService: DateService) {
     this.form = new FormGroup({
       "category": new FormControl(""),
       "value": new FormControl()
@@ -22,6 +27,18 @@ export class BillsAddComponent implements OnInit {
 
   ngOnInit(): void {
     this.init();
+    this.refreshSubscription = this.refreshService.refresh$.subscribe(() => {
+      this.refreshComponent();
+    });
+  }
+
+  refreshComponent() {
+    let isEqual = this.dateService.isSelectedEqualToCurrent();
+    if(isEqual){
+      this.form.enable();
+    } else{
+      this.form.disable();
+    }
   }
 
   init(){

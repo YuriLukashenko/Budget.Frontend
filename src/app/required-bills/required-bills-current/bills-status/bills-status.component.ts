@@ -3,6 +3,7 @@ import {IReqBillsCurrentDTO, IReqBillsPayedDTO} from "../../../dtos/DTOs";
 import {RequiredBillsService} from "../../../services/api/required-bills/required-bills.service";
 import {RefreshService} from "../../../services/refresh/refresh.service";
 import {Subscription} from "rxjs";
+import {DateService} from "../../../services/date/date.service";
 
 enum BillType {
   External,
@@ -24,7 +25,9 @@ export class BillsStatusComponent implements OnInit {
 
   private refreshSubscription: Subscription | undefined;
 
-  constructor(private requiredBillsService: RequiredBillsService, private refreshService: RefreshService) { }
+  constructor(private requiredBillsService: RequiredBillsService,
+              private refreshService: RefreshService,
+              private dateService: DateService) { }
 
   ngOnInit(): void {
     this.init();
@@ -45,6 +48,9 @@ export class BillsStatusComponent implements OnInit {
   }
 
   init(){
+    let year = this.dateService.getSelectedYear();
+    let month = this.dateService.getSelectedMonth();
+
     this.requiredBillsService.getCurrentBills(BillType.External).subscribe(
       data => {
         this.currentBillsExternal = data

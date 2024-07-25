@@ -1,0 +1,30 @@
+<div class="container items-container">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-group bills-selector">
+      <select formControlName="year" class="form-control">
+        <option value="">Year</option>
+        <option *ngFor="let year of years" [ngValue]="year">
+          {{year}}
+        </option>
+      </select>
+      <select formControlName="month" class="form-control ml-2">
+        <option value="">Month</option>
+        <option *ngFor="let month of months" [ngValue]="month">
+          {{month}}
+        </option>
+      </select>
+    </div>
+    <div class="form-group bills-selector mt-1">
+      <button type="submit" class="btn" [ngClass]="(dataStatus==='ACTIVE')? 'btn-success' :(dataStatus==='PENDING' ? 'btn-warning' : 'btn-danger') " [disabled]="form.status !== 'VALID'">
+        <i class="fas fa-calendar-days mr-1"></i>
+        <span>Apply</span>
+      </button>
+      <button class="btn btn-primary ml-1" (click)="backToday()">
+        <i class="fa-solid fa-rotate-right mr-1"></i>
+        <span>Back today</span>
+      </button>
+    </div>
+  </form>
+</div>
+
+

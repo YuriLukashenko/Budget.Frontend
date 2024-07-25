@@ -44,6 +44,7 @@ import { RequiredBillsCurrentComponent } from './required-bills/required-bills-c
 import { BillsStatusComponent } from './required-bills/required-bills-current/bills-status/bills-status.component';
 import { BillsAddComponent } from './required-bills/required-bills-current/bills-add/bills-add.component';
 import { BillCurrentComponent } from './required-bills/required-bills-current/bills-status/bill-current/bill-current.component';
+import { BillsDateSelectorComponent } from './required-bills/required-bills-current/bills-date-selector/bills-date-selector.component';
 
 // @ts-ignore
 @NgModule({
@@ -84,6 +85,7 @@ import { BillCurrentComponent } from './required-bills/required-bills-current/bi
     BillsStatusComponent,
     BillsAddComponent,
     BillCurrentComponent,
+    BillsDateSelectorComponent,
   ],
   imports: [
     BrowserModule,
