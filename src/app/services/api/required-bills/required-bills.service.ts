@@ -2,7 +2,14 @@ import { Injectable } from '@angular/core';
 import {Observable} from "rxjs";
 import {ApiService} from "../api.service";
 import {map} from "rxjs/operators";
-import {IFluxDTO, IFluxTypes, IReqBillsCategory, IReqBillsCurrentDTO, IReqBillsPayedDTO} from "../../../dtos/DTOs";
+import {
+  IFluxDTO,
+  IFluxTypes,
+  IReqBillsCategory,
+  IReqBillsCurrentDTO,
+  IReqBillsPayedDTO,
+  IReqBillsSelectedDTO
+} from "../../../dtos/DTOs";
 
 const serviceRoute = 'requiredbills/';
 @Injectable({
@@ -31,6 +38,20 @@ export class RequiredBillsService {
     return this.get('current/' + type.toString())
       .pipe(
         map((data: IReqBillsCurrentDTO[]) => data)
+      );
+  }
+
+  getSelectedBills(body: IReqBillsSelectedDTO): Observable<any> {
+    return this.post('selected', body)
+      .pipe(
+        map((data: IReqBillsCurrentDTO[]) => data)
+      );
+  }
+
+  getSelectedBillsTotal(body: IReqBillsSelectedDTO): Observable<any> {
+    return this.post('total', body)
+      .pipe(
+        map((data: IReqBillsCurrentDTO) => data)
       );
   }
 

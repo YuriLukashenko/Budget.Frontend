@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, SimpleChanges} from '@angular/core';
 import {IReqBillsCurrentDTO, IReqBillsPayedDTO} from "../../../dtos/DTOs";
 import {RequiredBillsService} from "../../../services/api/required-bills/required-bills.service";
 import {RefreshService} from "../../../services/refresh/refresh.service";
 import {Subscription} from "rxjs";
 import {DateService} from "../../../services/date/date.service";
+import {NgxSpinnerService} from "ngx-spinner";
 
 enum BillType {
   External,
@@ -27,7 +28,8 @@ export class BillsStatusComponent implements OnInit {
 
   constructor(private requiredBillsService: RequiredBillsService,
               private refreshService: RefreshService,
-              private dateService: DateService) { }
+              private dateService: DateService,
+              private spinnerService: NgxSpinnerService) { }
 
   ngOnInit(): void {
     this.init();
@@ -48,10 +50,16 @@ export class BillsStatusComponent implements OnInit {
   }
 
   init(){
+    this.spinnerService.show();
+
     let year = this.dateService.getSelectedYear();
     let month = this.dateService.getSelectedMonth();
 
-    this.requiredBillsService.getCurrentBills(BillType.External).subscribe(
+    this.requiredBillsService.getSelectedBills({
+      type: BillType.External,
+      year,
+      month
+    }).subscribe(
       data => {
         this.currentBillsExternal = data
       },
@@ -60,16 +68,25 @@ export class BillsStatusComponent implements OnInit {
       }
     );
 
-    this.requiredBillsService.getCurrentBills(BillType.Internal).subscribe(
+    this.requiredBillsService.getSelectedBills({
+      type: BillType.Internal,
+      year,
+      month
+    }).subscribe(
       data => {
         this.currentBillsInternal = data
+        this.spinnerService.hide();
       },
       err => {
         this.currentBillsInternal = JSON.parse(err.error).message;
       }
     );
 
-    this.requiredBillsService.getCurrentBillsTotal(BillType.External).subscribe(
+    this.requiredBillsService.getSelectedBillsTotal({
+      type: BillType.External,
+      year,
+      month
+    }).subscribe(
       data => {
         this.totalBillExternal = data
       },
@@ -78,7 +95,11 @@ export class BillsStatusComponent implements OnInit {
       }
     );
 
-    this.requiredBillsService.getCurrentBillsTotal(BillType.Internal).subscribe(
+    this.requiredBillsService.getSelectedBillsTotal({
+      type: BillType.Internal,
+      year,
+      month
+    }).subscribe(
       data => {
         this.totalBillInternal = data
       },
@@ -86,6 +107,5 @@ export class BillsStatusComponent implements OnInit {
         this.totalBillInternal  = JSON.parse(err.error).message;
       }
     );
-
   };
 }

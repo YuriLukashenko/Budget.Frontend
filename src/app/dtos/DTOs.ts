@@ -205,3 +205,9 @@ export interface IReqBillsCurrentDTO {
   isCompleted: boolean;
   type: number
 }
+
+export interface IReqBillsSelectedDTO {
+  type: number,
+  year: number,
+  month: number
+}
