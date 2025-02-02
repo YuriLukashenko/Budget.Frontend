@@ -12,7 +12,7 @@ export class RefluxMonthComponent implements OnInit {
   refluxTypes: RefluxType[] = [];
   typeSelected: number = 0;
   years: Year[] = [];
-  yearSelected: number = 2024;
+  yearSelected: number = 2025;
   chartTypes: string[] = [];
   chartTypeSelected: string = "column";
 
@@ -41,7 +41,7 @@ export class RefluxMonthComponent implements OnInit {
       { "id": 2024, "name": "2024" },
       { "id": 2025, "name": "2025" },
     ]
-    this.yearSelected = 2024;
+    this.yearSelected = 2025;
   }
 
   setChartTypes(){
