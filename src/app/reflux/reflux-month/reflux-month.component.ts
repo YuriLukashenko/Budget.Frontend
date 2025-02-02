@@ -38,7 +38,8 @@ export class RefluxMonthComponent implements OnInit {
       { "id": 2021, "name": "2021" },
       { "id": 2022, "name": "2022" },
       { "id": 2023, "name": "2023" },
-      { "id": 2024, "name": "2024" }
+      { "id": 2024, "name": "2024" },
+      { "id": 2025, "name": "2025" },
     ]
     this.yearSelected = 2024;
   }
